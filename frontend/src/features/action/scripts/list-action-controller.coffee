@@ -22,7 +22,12 @@ angular.module 'ProjectTrailApp.controllers'
       # =============================================
       # Methods
       # =============================================
-
+      $scope.seeSteps = (action) ->
+        $state.go 'step.list' , {
+          teamId   : $scope.team.id
+          toolId   : $scope.tool.id
+          actionId : action.id
+        }
 
       # =============================================
       # Aux Methods

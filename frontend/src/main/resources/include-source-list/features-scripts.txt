@@ -15,9 +15,13 @@ scripts/features/tool/scripts/tool-controller.js
 scripts/features/tool/scripts/list-tool-controller.js
 scripts/features/tool/scripts/form-tool-controller.js
 
-
 scripts/features/action/scripts/action-routes.js
 scripts/features/action/scripts/action-controller.js
 scripts/features/action/scripts/list-action-controller.js
 scripts/features/action/scripts/form-action-controller.js
+
+scripts/features/step/scripts/step-routes.js
+scripts/features/step/scripts/step-controller.js
+scripts/features/step/scripts/list-step-controller.js
+scripts/features/step/scripts/form-step-controller.js
 

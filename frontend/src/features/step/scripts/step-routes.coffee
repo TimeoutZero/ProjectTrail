@@ -15,12 +15,12 @@ angular.module 'ProjectTrailApp'
     $stateProvider
 
 
-      # Tool
+      # step
       # ==============================
-      .state('tool'
-        url         : '/tool'
-        templateUrl : 'views/features/tool/views/tool-view.html'
-        controller  : 'ToolController'
+      .state('step'
+        url         : '/:teamId/:toolId/:actionId/'
+        templateUrl : 'views/features/step/views/step-view.html'
+        controller  : 'StepController'
         abstract    : yes
         data        :
           restrict  : no
@@ -29,32 +29,32 @@ angular.module 'ProjectTrailApp'
 
       # List
       # ==============================
-      .state('tool.list'
-        url         : '/list'
-        templateUrl : 'views/features/tool/views/list-tool-view.html'
-        controller  : 'ListToolController'
+      .state('step.list'
+        url         : 'list'
+        templateUrl : 'views/features/step/views/list-step-view.html'
+        controller  : 'ListStepController'
         data        :
           restrict  : no
       )
 
 
-      # Tool
+      # step
       # ==============================
-      .state('tool.create'
-        url         : '/create'
-        templateUrl : 'views/features/tool/views/form-tool.html'
-        controller  : 'FormToolController'
+      .state('step.create'
+        url         : 'create'
+        templateUrl : 'views/features/step/views/form-step.html'
+        controller  : 'FormStepController'
         data        :
           restrict  : no
       )
 
 
-      # Tool
+      # step
       # ==============================
-      .state('tool.edit'
-        url         : '/edit/:id'
-        templateUrl : 'views/features/tool/views/form-tool.html'
-        controller  : 'FormToolController'
+      .state('step.edit'
+        url         : ':id/edit/'
+        templateUrl : 'views/features/step/views/form-step.html'
+        controller  : 'FormStepController'
         data        :
           restrict  : no
       )

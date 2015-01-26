@@ -6,15 +6,14 @@
 angular.module 'ProjectTrailApp.controllers'
 
   # =============================================
-  # ToolController
+  # StepController
   # =============================================
-  .controller 'ListToolController', [ '$rootScope', '$scope',
-    ($rootScope, $scope) ->
+  .controller 'StepController', [
+    () ->
 
       # =============================================
       # Attributes
       # =============================================
-      $scope.tools = $rootScope.tools
 
 
       # =============================================

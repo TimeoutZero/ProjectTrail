@@ -11,5 +11,8 @@ libs/angular-sanitize/angular-sanitize.min.js
 libs/quick-ng-repeat/quick-ng-repeat.js
 libs/hammerjs/hammer.js
 libs/angular-aria/angular-aria.js
-libs/showdown/src/showdown.js
+libs/showdown/compressed/Showdown.js
+libs/showdown/compressed/extensions/github.min.js
 libs/angular-markdown-directive/markdown.js
+libs/angular-material/angular-material.js
+libs/angular-animate/angular-animate.js

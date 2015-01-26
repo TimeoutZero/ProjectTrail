@@ -45,6 +45,24 @@ angular.module 'ProjectTrailApp'
                   id   : parseInt(_.uniqueId())
                   name : 'Reindexar Documentos'
                   description : 'Script pra chamar a API de reindexação via demanda'
+                  steps: [
+                    {
+                      id          : parseInt(_.uniqueId())
+                      name        : 'Abra o arquivo do script'
+                      description : """
+                        Busque o arquivo do script
+                      """
+                    }
+                    {
+                      id          : parseInt(_.uniqueId())
+                      name        : 'Alterar o array com IDs'
+                      description : """
+                        ```javascript
+                          var ids = []; // Colocar o id dos documentos aqui
+                        ```
+                      """
+                    }
+                  ]
                 }
               ]
             }
