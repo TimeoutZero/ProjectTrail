@@ -16,3 +16,4 @@ libs/showdown/compressed/extensions/github.min.js
 libs/angular-markdown-directive/markdown.js
 libs/angular-material/angular-material.js
 libs/angular-animate/angular-animate.js
+libs/angular-wizard/dist/angular-wizard.js

@@ -8,8 +8,8 @@ angular.module 'ProjectTrailApp.controllers'
   # =============================================
   # StepController
   # =============================================
-  .controller 'StepController', [
-    () ->
+  .controller 'StepController', [ '$scope',
+    ($scope) ->
 
       # =============================================
       # Attributes
@@ -19,6 +19,7 @@ angular.module 'ProjectTrailApp.controllers'
       # =============================================
       # Methods
       # =============================================
+
 
 
       # =============================================

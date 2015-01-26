@@ -1,4 +1,4 @@
-<div id="list-tool-screen" class="app-view">
+<div id="list-step-screen" class="app-view ">
 
   <!-- Barra Principal -->
   <!-- <header main-bar has-menu="true"></header> -->
@@ -17,6 +17,27 @@
   </div>
 
 
+
+
+  <div class="screen-content">
+
+    <wizard hide-indicators="true" current-step="currentStep">
+      <wz-step ng-repeat="step in steps" title="{{step.name}}" >
+        <button wz-previous >Anterior</button>
+        <button wz-next>Próximo</button>
+
+        <div class="row margin-top-default">
+          <div class="col-md-12 col-sm-12 panel panel-default">
+            <h2 ng-bind="step.name"></h2>
+            <div btf-markdown="step.description"></div>
+          </div>
+        </div>
+      </wz-step>
+    </wizard>
+
+
+  </div>
+
   <!-- Side Bar -->
   <md-sidenav md-component-id="left-nav" class="md-sidenav-left">
 
@@ -30,15 +51,5 @@
 
   </md-sidenav>
 
-  <div class="screen-content">
-
-    <div class="row">
-      <div class="col-md-12 col-sm-12 panel panel-default">
-        <h2 ng-bind="currentStep.name"></h2>
-        <div btf-markdown="currentStep.description"></div>  <!-- Markdown Preview -->
-      </div>
-    </div>
-
-  </div>
 
 </div>
