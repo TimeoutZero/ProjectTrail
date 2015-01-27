@@ -36,6 +36,7 @@ angular.module('ProjectTrailApp', [
   'btford.markdown'
   'ngMaterial'
   'mgo-angular-wizard'
+  'ui.ace'
   'ProjectTrailApp.scripts'
 ])
 
