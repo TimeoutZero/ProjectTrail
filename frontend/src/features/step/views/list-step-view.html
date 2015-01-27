@@ -1,7 +1,9 @@
-<div id="list-step-screen" class="app-view ">
+
+<div class="animated fadeIn">
 
   <!-- Barra Principal -->
   <!-- <header main-bar has-menu="true"></header> -->
+
 
   <!-- Cover Image -->
   <div id="team-img"></div>
@@ -11,28 +13,38 @@
       Menu
     </md-button>
 
-    <md-button class="md-fab md-button md-cyan-theme" ui-sref="step.edit({teamId: team.id, toolId: tool.id, actionId: action.id, id: currentStep.id})">
-      Edit
+    <md-button class="md-fab md-button md-cyan-theme"  ng-click="editCurrentStep()">
+      <span class="glyphicon glyphicon-pencil"></span>
     </md-button>
   </div>
 
 
-
-
   <div class="screen-content">
 
-    <wizard hide-indicators="true" current-step="currentStep">
+    <wizard hide-indicators="true" current-step="currentStep" name="step-wizard">
       <wz-step ng-repeat="step in steps" title="{{step.name}}" >
-        <button wz-previous >Anterior</button>
-        <button wz-next>Próximo</button>
+
+
+        <md-button wz-previous class="md-fab md-button md-cyan-theme wizard-arrow">
+          <span class="glyphicon glyphicon-chevron-left"></span>
+        </md-button>
+
+        <md-button wz-next class="md-fab md-button md-cyan-theme wizard-arrow">
+          <span class="glyphicon glyphicon-chevron-right"></span>
+        </md-button>
 
         <div class="row margin-top-default">
           <div class="col-md-12 col-sm-12 panel panel-default">
-            <h2 ng-bind="step.name"></h2>
+
+            <md-checkbox ng-model="step.done" aria-label="{{step.name}}">
+              <h2 ng-bind="step.name"> </h2>
+            </md-checkbox>
+
             <div btf-markdown="step.description"></div>
           </div>
         </div>
       </wz-step>
+
     </wizard>
 
 
@@ -50,6 +62,5 @@
     </ul>
 
   </md-sidenav>
-
 
 </div>

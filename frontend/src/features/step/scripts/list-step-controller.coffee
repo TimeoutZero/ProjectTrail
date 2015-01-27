@@ -8,8 +8,8 @@ angular.module 'ProjectTrailApp.controllers'
   # =============================================
   # ListStepController
   # =============================================
-  .controller 'ListStepController', [ '$rootScope', '$scope', '$state', '$stateParams', '$mdSidenav', 'StepNavigationFactory',
-    ($rootScope, $scope, $state, $stateParams, $mdSidenav, StepNavigationFactory) ->
+  .controller 'ListStepController', [ '$rootScope', '$scope', '$state', '$stateParams', '$mdSidenav', 'StepNavigationFactory', 'WizardHandler',
+    ($rootScope, $scope, $state, $stateParams, $mdSidenav, StepNavigationFactory, WizardHandler) ->
 
       # =============================================
       # Attributes
@@ -19,6 +19,8 @@ angular.module 'ProjectTrailApp.controllers'
       $scope.action      = _.findWhere( $scope.tool?.actions , id: parseInt($stateParams.actionId) )
       $scope.steps       = $scope.action?.steps
 
+      $scope.currentStep = null
+
       $scope.viewUtils =
         editMode        : no
       # =============================================
@@ -27,10 +29,20 @@ angular.module 'ProjectTrailApp.controllers'
       $scope.toogleLeftNav = ->
         $mdSidenav('left-nav').toggle()
 
+      $scope.editCurrentStep = ->
+        $state.go 'step.edit',
+          teamId   : $scope.team.id
+          toolId   : $scope.tool.id
+          actionId : $scope.action.id
+          id       : $scope.getCurrentStep().id
+
+
       # =============================================
       # Aux Methods
       # =============================================
-
+      $scope.getCurrentStep = ->
+        currentStepIndex = WizardHandler.wizard('step-wizard').currentStepNumber() - 1
+        return $scope.steps[currentStepIndex]
 
       # =============================================
       # Initialize

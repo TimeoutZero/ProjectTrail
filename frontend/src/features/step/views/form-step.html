@@ -1,6 +1,47 @@
 
-<!-- Markdown Component -->
-<textarea ng-model="step.description" ng-name="step-description" id="step-description" cols="30" rows="10"></textarea>
+<div class="animated fadeIn">
 
-<!-- Markdown Preview -->
-<div btf-markdown="step.description"></div>
+  <div class="well">
+    <md-button ng-click="toogleLeftNav()" class="md-fab md-button md-cyan-theme">
+      Menu
+    </md-button>
+
+    <md-button class="md-fab md-button md-cyan-theme">
+      <span class="glyphicon glyphicon-eye-open"></span>
+    </md-button>
+  </div>
+
+
+  <div class="row">
+
+    <!-- Editor -->
+    <div class="col-md-6 panel panel-default">
+      <h3 class="text-center">Markdown Editor</h3>
+      <div class="panel-body">
+        <div ui-ace="{theme:'monokai', mode: 'markdown'}" ng-model="step.description"></div>
+      </div>
+    </div>
+
+    <!-- Markdown Preview -->
+    <div class="col-md-6 panel panel-default">
+      <h3 class="text-center">Preview</h3>
+      <div class="panel-body">
+        <div btf-markdown="step.description"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Side Bar -->
+  <md-sidenav md-component-id="left-nav" class="md-sidenav-left">
+
+    <h3 class="text-center" ng-bind="action.name"></h3>
+
+    <ul>
+      <li ng-repeat="step in steps">
+        <span ng-bind="$index + 1"></span> - <span ng-bind="step.name"></span>
+      </li>
+    </ul>
+
+  </md-sidenav>
+
+</div>
