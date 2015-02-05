@@ -12,3 +12,5 @@ scripts/components/directives/list-features/scripts/list-features-directive.js
 scripts/components/factories/step-navigation/step-navigation-factory.js
 
 scripts/components/directives/photo-header/scripts/photo-header-directive.js
+
+scripts/components/other/iwizard/scripts/i-list-wizard-controller.js
