@@ -31,10 +31,16 @@ angular.module 'ProjectTrailApp'
       # ==============================
       .state('step.list'
         url         : 'list'
-        templateUrl : 'views/features/step/views/list-step-view.html'
-        controller  : 'ListStepController'
         data        :
           restrict  : no
+        views :
+          '' :
+            templateUrl : 'views/features/step/views/list-step-view.html'
+            controller  : 'ListStepController'
+          'wizard@step.list' :
+             templateUrl : 'views/components/other/iwizard/views/i-list-wizard.html'
+             controller  : 'IListWizardController'
+
       )
 
 

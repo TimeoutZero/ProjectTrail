@@ -21,8 +21,6 @@ angular.module 'ProjectTrailApp.controllers'
 
       $scope.currentStep = null
 
-      $scope.viewUtils =
-        editMode        : no
       # =============================================
       # Methods
       # =============================================
