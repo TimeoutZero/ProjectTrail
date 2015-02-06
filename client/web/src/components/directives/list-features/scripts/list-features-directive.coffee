@@ -12,8 +12,9 @@ angular.module 'ProjectTrailApp.directives'
     restrict: 'A'
     replace : yes
     scope:
-      list          : "="
-      onClickItem   : "="
+      list            : "="
+      onClickItem     : "="
+      onClickSettings : "="
     controller : ['$scope'
       ($scope) ->
         $scope.defaultImgUrl = 'img/main/img/general/default-placeholder-picture.png'
@@ -31,6 +32,9 @@ angular.module 'ProjectTrailApp.directives'
         $scope.clickItemCallback = (item) ->
           if _.isFunction($scope.onClickItem) then $scope.onClickItem(item)
 
+        $scope.clickSettings = (item) ->
+          if _.isFunction($scope.onClickSettings) then $scope.onClickSettings(item)
+
     ]
     template:"""
       <div class="row margin-top-default">
@@ -47,7 +51,7 @@ angular.module 'ProjectTrailApp.directives'
                   </div>
                 </div>
 
-                <button class="settings-button">Settings</button>
+                <button class="settings-button" ng-click="clickSettings(item)">Settings</button>
               </div>
             </li>
           </ul>

@@ -31,30 +31,12 @@ angular.module 'ProjectTrailApp'
       # ==============================
       .state('team.list'
         url         : '/list'
-        templateUrl : 'views/features/team/views/list-team-view.html'
-        controller  : 'ListTeamController'
-        data        :
-          restrict  : no
-      )
-
-
-      # Create Team
-      # ==============================
-      .state('team.create'
-        url         : '/create'
-        templateUrl : 'views/features/team/views/form-team.html'
-        controller  : 'FormTeamController'
-        data        :
-          restrict  : no
-      )
-
-
-      # Edit Team
-      # ==============================
-      .state('team.edit'
-        url         : '/edit/:id'
-        templateUrl : 'views/features/team/views/form-team.html'
-        controller  : 'FormTeamController'
+        views:
+          '' :
+            templateUrl : 'views/features/team/views/list-team-view.html'
+            controller  : 'ListTeamController'
+          'form-view@team.list' :
+            controller  : 'FormTeamController'
         data        :
           restrict  : no
       )
