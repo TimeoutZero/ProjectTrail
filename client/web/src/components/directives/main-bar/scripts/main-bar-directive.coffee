@@ -9,11 +9,9 @@ angular.module 'ProjectTrailApp.directives'
   # mainMenu
   # =============================================
   .directive 'mainBar', [ () ->
-    restrict: 'A'
+    restrict: 'AE'
     replace : yes
-    scope:
-      hasMenu : "@"
-      hasUser : "@"
+    scope: {}
     controller  : ['$scope', '$filter', '$rootScope', '$state',
       ($scope, $filter, $rootScope, $state) ->
 
@@ -21,11 +19,7 @@ angular.module 'ProjectTrailApp.directives'
         # Attributes
         # =============================================
         $scope.currentParentState = null
-        $scope.user               = null
         $scope.isOpen             = no
-
-        $scope.hasMenu   = if $scope.hasMenu then $scope.$eval($scope.hasMenu) else no
-        $scope.hasUser   = if $scope.hasUser then $scope.$eval($scope.hasUser) else no
 
         $scope.menuItems = [
           { name: 'Tool', mainState: 'tool.list', parentState: 'tool' }
@@ -37,10 +31,6 @@ angular.module 'ProjectTrailApp.directives'
         $scope.changeSelectedItem = () =>
           states = $state.current.name.split('.')
           $scope.currentParentState = states[0] or $state.current.name
-
-        $scope.loggout = ->
-          promise = LoginService.loggout()
-          promise.success -> $state.go 'login'
 
         # =============================================
         # Events
