@@ -23,7 +23,11 @@
     </div>
 
     <!-- List -->
-    <div list-features list="teams" on-click-item="onClickItem" on-click-settings="showSettings"></div>
+    <div list-features list="teams"
+      on-click-item="onClickItem"
+      on-click-settings="showSettings"
+      on-click-edit-button="openFormDialog"
+      on-click-delete-button="deleteItem"></div>
     <div ui-view="form-view"></div>
   </div>
 </div>
