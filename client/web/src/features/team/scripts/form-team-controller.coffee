@@ -8,8 +8,8 @@ angular.module 'ProjectTrailApp.controllers'
   # =============================================
   # ToolController
   # =============================================
-  .controller 'FormTeamController', [ '$rootScope', '$scope'
-    ($rootScope, $scope) ->
+  .controller 'FormTeamController', [ '$rootScope', '$scope', '$mdDialog',
+    ($rootScope, $scope, $mdDialog) ->
 
       # =============================================
       # Attributes
@@ -29,7 +29,9 @@ angular.module 'ProjectTrailApp.controllers'
       # =============================================
       # Initialize
       # =============================================
-
+      $scope.$on 'openFormDialog', ->
+        $mdDialog.show
+          templateUrl : 'views/features/team/views/form-team-view.html'
 
       return @
 

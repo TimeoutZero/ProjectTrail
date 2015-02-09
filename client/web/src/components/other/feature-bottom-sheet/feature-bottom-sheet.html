@@ -1,0 +1,25 @@
+<md-bottom-sheet class="md-grid">
+  <md-list>
+
+    <md-item>
+      <button class="md-grid-item-content md-button md-default-theme" ng-click="$parent.openFormDialog()" tabindex="0">
+        <div class="md-icon-container">
+          <span class="glyphicon glyphicon-pencil myo-font-size-36"></span>
+        </div>
+        <p class="md-grid-text ng-binding"> Edit </p>
+        <div class="md-ripple-container"></div>
+      </button>
+    </md-item>
+
+    <md-item>
+      <button class="md-grid-item-content md-button md-default-theme" ng-click="deleteItem()" tabindex="0">
+        <div class="md-icon-container">
+          <span class="glyphicon glyphicon-remove myo-font-size-36"></span>
+        </div>
+        <p class="md-grid-text ng-binding"> Delete </p>
+        <div class="md-ripple-container"></div>
+      </button>
+    </md-item>
+
+  </md-list>
+</md-bottom-sheet>

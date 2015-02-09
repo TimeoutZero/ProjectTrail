@@ -18,5 +18,4 @@ libs/angular-material/angular-material.js
 libs/angular-animate/angular-animate.js
 libs/angular-wizard/dist/angular-wizard.js
 libs/ace-builds/src-min-noconflict/ace.js
-libs/angular/angular.js
 libs/angular-ui-ace/ui-ace.js
