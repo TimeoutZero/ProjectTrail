@@ -27,14 +27,14 @@ obfuscatePlugin       = require 'gulp-obfuscate'
 regexReplacePlugin    = require 'gulp-regex-replace'
 gulpSassPlugin        = require 'gulp-sass'
 fs                    = require 'fs'
-findPathsPlugin       = require 'vinyl-paths' 
+findPathsPlugin       = require 'vinyl-paths'
 
 
 # ==================================
 # Path Variables
 # ==================================
 paths = {}
-  
+
 
 # ==================================
 # Setup
@@ -48,7 +48,7 @@ readJSON = (filename) ->
 setup = (done) ->
   pathsJSON = readJSON('gulp/paths.json')
   _(paths).extend pathsJSON
-  
+
   done()
 
 
@@ -56,8 +56,8 @@ setup = (done) ->
 # Common
 # ==================================
 
-feedback = 
-  
+feedback =
+
   info : (options) ->
     unless options.name and options.message then throw new Error("#{gutil.colors.red(' === Invalid info feedback === ')}")
 
@@ -126,7 +126,7 @@ install = () ->
     process.exit 1
 
   bower.commands.prune().on 'log', (data) -> feedbak.info( name: 'Bower Prune', message: data.id + data.message)
-    .on 'end', -> 
+    .on 'end', ->
       bower.commands.install().on 'log', (data) -> feedbak.info( name: 'Bower Install', message: data.id + data.message)
 
 
@@ -143,7 +143,7 @@ buildAppScripts = () ->
     .on 'error', (error) -> feedback.error(name: 'CoffeeScript-ERROR', message: error)
     .pipe gulp.dest paths.dev.jsDirectory
 
-  
+
 # Include Sources from a list
 # ======================
 includeSources = ->
@@ -159,7 +159,7 @@ watch = ->
   # SASS Files
   # ==================
   gulp.watch(paths.source.sass.sourceFiles).on('change', (e) ->
-    buildSASS( 
+    buildSASS(
       paths         : paths.source.sass.mainSassFile
       renameTo      : 'app'
       extensionName : '.css'
@@ -261,7 +261,7 @@ runAppTestsFunction = (actionString) ->
     )
 
 gulp.task 'runAppTests', [], -> runAppTestsFunction('run')
-  
+
 
 
 
@@ -275,15 +275,15 @@ gulp.task 'setup'                        , [                          ], setup
 gulp.task 'cleanDev'                     , ['setup'                   ], -> clean(paths.dev.directory)
 gulp.task 'install'                      , ['setup', 'cleanDev'       ], install
 
-gulp.task 'buildVendorsSASS'             , ['install'                 ], -> 
-  buildSASS( 
+gulp.task 'buildVendorsSASS'             , ['install'                 ], ->
+  buildSASS(
     paths         : paths.vendors.sass.mainSassFile
     renameTo      : paths.vendors.css.mainCssFileName
     extensionName : '.css'
     dest          : paths.dev.cssDirectory
   )
 
-gulp.task 'buildVendorsStyles'           , ['buildVendorsSASS'        ], -> 
+gulp.task 'buildVendorsStyles'           , ['buildVendorsSASS'        ], ->
   concat(
     paths: [paths.vendors.css.sourceFiles, paths.dev.vendorsCssFile]
     renameTo: paths.vendors.css.mainCssFileName + '.css'
@@ -291,7 +291,7 @@ gulp.task 'buildVendorsStyles'           , ['buildVendorsSASS'        ], ->
   )
 
 gulp.task 'buildAppStyles'               , ['cleanDev'                ], ->
-  buildSASS( 
+  buildSASS(
     paths         : paths.source.sass.mainSassFile
     renameTo      : paths.source.css.mainCssFileName
     extensionName : '.css'
@@ -303,13 +303,13 @@ gulp.task 'buildAppScripts'              , ['cleanDev'                ], buildAp
 gulp.task 'buildMarkup'                  , ['cleanDev'                ], -> copy( paths: paths.source.html.sourceFiles, dest: paths.dev.htmlDirectory )
 gulp.task 'copyResourcesToDevFolder'     , ['cleanDev'                ], -> copy( paths: paths.source.resourcesFiles, dest: paths.dev.resourcesDirectory)
 gulp.task 'copyImgToDevFolder'           , ['cleanDev'                ], -> copy( paths: paths.source.img.sourceFiles, dest: paths.dev.imgDirectory)
-gulp.task 'copyIndexToDevFolder'         , ['copyResourcesToDevFolder'], -> copy( paths: paths.source.indexFile, dest: paths.dev.directory).on 'end', includeSources
+gulp.task 'copyIndexToDevFolder'         , ['copyResourcesToDevFolder', 'buildAppScripts'], -> copy( paths: paths.source.indexFile, dest: paths.dev.directory).on 'end', includeSources
 gulp.task 'runDevTests'                  , ['buildAppScripts', 'buildVendorsScripts'], -> runAppTestsFunction('run')
 
 
 
 gulp.task 'default', [
-  'setup' 
+  'setup'
   'cleanDev'
   'install'
   'buildVendorsSASS'
