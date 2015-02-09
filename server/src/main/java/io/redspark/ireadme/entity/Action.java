@@ -18,7 +18,7 @@ public class Action extends AbstractEntity {
 	@ManyToOne
 	private Tool tool;
 	
-	@OneToMany(mappedBy = "step")
+	@OneToMany(mappedBy = "action")
 	private List<Step> steps = new ArrayList<>();
 	
 	public Tool getTool() {

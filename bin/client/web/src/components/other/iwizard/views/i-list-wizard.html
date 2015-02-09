@@ -1,0 +1,27 @@
+
+<wizard hide-indicators="true" current-step="currentStep" name="step-wizard">
+  <wz-step ng-repeat="step in steps" title="{{step.name}}" >
+
+    <md-button wz-previous class="md-fab md-button md-cyan-theme wizard-arrow left-arrow" ng-if="$index != 0">
+      <span class="glyphicon glyphicon-chevron-left" ></span>
+    </md-button>
+
+    <md-button wz-next class="md-fab md-button md-cyan-theme wizard-arrow right-arrow" ng-if="$index != steps.length - 1">
+      <span class="glyphicon glyphicon-chevron-right"></span>
+    </md-button>
+
+    <div ng-bind-html="getHtmlContent(step)"></div>
+
+    <div class="row margin-top-default">
+      <div class="col-md-12 col-sm-12 panel panel-default">
+
+        <md-checkbox ng-model="step.done" aria-label="{{step.name}}">
+          <h2 ng-bind="step.name"> </h2>
+        </md-checkbox>
+
+        <div btf-markdown="step.description"></div>
+      </div>
+    </div>
+
+  </wz-step>
+</wizard>

@@ -1,6 +1,7 @@
 package io.redspark.ireadme.service;
 
 import io.redspark.ireadme.repository.ActionRepository;
+import io.redspark.ireadme.repository.StepRepository;
 import io.redspark.ireadme.repository.TeamRepository;
 import io.redspark.ireadme.repository.ToolRepository;
 import io.redspark.ireadme.repository.UserRepository;
@@ -22,6 +23,9 @@ public class IReadmeRepository {
 	
 	@Autowired
 	private ActionRepository actionRepository;
+	
+	@Autowired
+	private StepRepository stepRepository;
 
 	public UserRepository getUserRepository() {
 		return userRepository;
@@ -39,4 +43,7 @@ public class IReadmeRepository {
 		return actionRepository;
 	}
 
+	public StepRepository getStepRepository() {
+		return stepRepository;
+	}
 }
