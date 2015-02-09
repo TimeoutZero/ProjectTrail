@@ -1,9 +1,12 @@
-<header class="myo-main-menu main-bar animated fadeIn">
+<header class="main-bar animated fadeIn">
 
   <div class="main-bar-content">
+    <div>
+      <span class="text-white font-bold">iReadme</span>
+    </div>
 
     <!-- Menu Items -->
-    <ul ng-if="hasMenu === true" class="main-item-list">
+    <!-- <ul ng-if="hasMenu === true" class="main-item-list">
       <li class="menu-item" ng-repeat="menuItem in menuItems track by menuItem.parentState">
         <a
           ui-sref="{{menuItem.mainState}}"
@@ -14,13 +17,13 @@
             }">
         </a>
       </li>
-    </ul>
+    </ul> -->
 
     <!-- Logo -->
     <!-- <div class="omakase-logo"></div> -->
 
     <!-- User -->
-    <div
+    <!-- <div
       ng-if="hasUser === true"
       class="user-menu-container pull-right"
       ng-mouseenter="isOpen = true"
@@ -38,8 +41,14 @@
           Sair
         </li>
       </ul>
-    </div>
+    </div> -->
 
+  </div>
+
+  <div class="main-bar-sub-content">
+    <div>
+      <span class="text-dark-grey" ng-bind="currentItem.name"></span>
+    </div>
   </div>
 
 </header>

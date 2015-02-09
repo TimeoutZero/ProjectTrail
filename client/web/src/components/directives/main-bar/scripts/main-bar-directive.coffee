@@ -8,46 +8,40 @@ angular.module 'ProjectTrailApp.directives'
   # =============================================
   # mainMenu
   # =============================================
-  .directive 'mainBar', [ () ->
-    restrict: 'A'
-    replace : yes
-    scope:
-      hasMenu : "@"
-      hasUser : "@"
-    controller  : ['$scope', '$filter', '$rootScope', '$state',
-      ($scope, $filter, $rootScope, $state) ->
+  .directive 'mainBar', ['$filter', '$rootScope', '$state', '$timeout', ($filter, $rootScope, $state, $timeout) ->
+    restrict    : 'AE'
+    replace     : yes
+    scope       : {}
+    templateUrl : 'views/components/directives/main-bar/views/main-bar.html'
+    link        : (scope, element, attrs) ->
 
-        # =============================================
-        # Attributes
-        # =============================================
-        $scope.currentParentState = null
-        $scope.user               = null
-        $scope.isOpen             = no
+      # =============================================
+      # Attributes
+      # =============================================
+      scope.currentParentState = null
+      scope.isOpen             = no
+      scope.state              = $state
 
-        $scope.hasMenu   = if $scope.hasMenu then $scope.$eval($scope.hasMenu) else no
-        $scope.hasUser   = if $scope.hasUser then $scope.$eval($scope.hasUser) else no
+      scope.menuItems = [
+        { name: 'Team list', mainState: 'team.list', parentState: 'team' }
+        { name: 'Tool list', mainState: 'tool.list', parentState: 'tool' }
+      ]
 
-        $scope.menuItems = [
-          { name: 'Tool', mainState: 'tool.list', parentState: 'tool' }
-        ]
+      # =============================================
+      # Methods
+      # =============================================
+      scope.changeSelectedItem = () =>
+        states                    = $state.current.name.split('.')
+        scope.currentParentState = states[0] or $state.current.name
+        scope.currentItem        = _.findWhere scope.menuItems, {mainState: $state.current.name}
 
-        # =============================================
-        # Methods
-        # =============================================
-        $scope.changeSelectedItem = () =>
-          states = $state.current.name.split('.')
-          $scope.currentParentState = states[0] or $state.current.name
+      # =============================================
+      # Watcher
+      # =============================================
+      $timeout ->
+          scope.$watch 'state.current.name', ->
+            scope.changeSelectedItem()
+        , 0
 
-        $scope.loggout = ->
-          promise = LoginService.loggout()
-          promise.success -> $state.go 'login'
-
-        # =============================================
-        # Events
-        # =============================================
-        $scope.changeSelectedItem()
-
-
-    ]
-    templateUrl: 'views/components/directives/main-bar/views/main-bar.html'
+      return
   ]
