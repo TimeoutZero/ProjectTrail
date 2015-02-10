@@ -1,20 +1,49 @@
-
-.myo-main-menu.main-bar
+.main-bar
   width         : 100%
-  background    : url('../img/main/img/patterns/quad-pattern.png') repeat, #FFFFFF
-  height        : $mainBarHeight
   position      : fixed
   top           : 0
   left          : 0
+  overflow      : auto
   z-index       : 3
 
-
-
   .main-bar-content
+    float        : left
+    width        : 100%
+    margin-left  : auto
+    margin-right : auto
+    height       : $mainBarHeight * 2
+
+    @extend .purple-bg-gradient
+
+    & > div
+      max-width    : 1024px
+      margin-left  : auto
+      margin-right : auto
+      padding      : 0 40px;
+
+      & > span
+        font-size   : 3em
+        line-height : $mainBarHeight * 2
+
+  .main-bar-sub-content
+    float        : left
+    width        : 100%
     max-width    : 1024px
     margin-left  : auto
     margin-right : auto
     height       : $mainBarHeight
+
+    @extend .grey-bg-color
+
+    & > div
+      max-width    : 1024px
+      margin-left  : auto
+      margin-right : auto
+      padding      : 0 40px;
+
+      & > span
+        font-size   : 1.4em
+        line-height : $mainBarHeight
 
   .main-item-list
     display     : inline-block
@@ -22,7 +51,7 @@
     position    : absolute
     line-height : $mainBarHeight
     height      : $mainBarHeight
-    margin-left : 100px 
+    margin-left : 100px
     @extend %font-open-sans-semibold
 
     .menu-item
@@ -43,28 +72,25 @@
     $userOptionHeight : 50px
     min-width: 180px
 
-    .user-container 
+    .user-container
       height      : $mainBarHeight
       line-height : $mainBarHeight
       color       : #FFFFFF
       padding: 0 $paddingDefault
       border-left : 1px solid #FFFFFF
-      
-      @extend %font-open-sans-semibold
 
+      @extend %font-open-sans-semibold
 
       .user-image
         +borderRadius(100%)
         margin: 0 $marginDefault
-
-
 
     .user-options
       list-style  : none
       display     : none
       color       : #000000
       @extend %font-open-sans-light-italic
-      
+
       .user-option
         display     : block
         text-align  : center
@@ -78,7 +104,6 @@
 
         &:last-child
           border-bottom : 1px solid #FFFFFF
-
 
     // User menu active
     &:hover
@@ -95,8 +120,6 @@
           background  : $beautyGreeenColor
           color       : #FFFFFF
 
-
-
   .brand-logo
     background : url('../img/logo_sony.png') center center no-repeat
     cursor     : pointer
@@ -105,7 +128,6 @@
     width      : 75px
     float      : left
 
-  
   .omakase-logo
     background  : url('../img/main/img/logos/omakase-logo.png') center center no-repeat
     background-size: 121px 40px
@@ -117,4 +139,3 @@
     top         : 0
     width       : 298px
 
-  

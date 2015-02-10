@@ -22,9 +22,17 @@ public class ActionService {
 		if(action == null) {
 			throw new IReadmeException(HttpStatus.NOT_FOUND, IReadmeExceptionMessage.notFound("action"));
 		}
+		
 		return action;
 	}
 	
+	public void exist(Long actionId) {
+		
+		if(!getRepository().exists(actionId)) {
+			throw new IReadmeException(HttpStatus.NOT_FOUND, IReadmeExceptionMessage.notFound("action"));
+		}
+	}
+
 	public ActionRepository getRepository() {
 		return repository.getActionRepository();
 	}

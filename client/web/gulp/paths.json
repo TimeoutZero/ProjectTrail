@@ -9,9 +9,9 @@
 
     "css" : {
       "mainCssFileName" : "vendors",
-      "sourceFiles": "vendors/**/*.css" 
-    } 
-      
+      "sourceFiles": "vendors/**/*.css"
+    }
+
   },
 
   "source" : {
@@ -37,9 +37,9 @@
     },
 
     "resourcesFiles": "src/main/resources/**/*",
-    
+
     "indexFile": "src/main/index.html"
-    
+
   },
 
 
@@ -60,7 +60,7 @@
 
     "htmlFiles"          : "builds/dev/views/**/*",
     "imgFiles"           : "builds/dev/img/**/*"
-     
+
   },
 
 
@@ -79,7 +79,7 @@
     "resourcesFiles"      : ["builds/release/resources/**/*", "!builds/release/resources/include-source-list"]
   },
 
-  
+
   "spec" : {
     "js" : {
       "sourceFiles" : [
@@ -107,5 +107,5 @@
 
   "bowerDirectory" : "bower_components/**/*"
 
-    
+
 }

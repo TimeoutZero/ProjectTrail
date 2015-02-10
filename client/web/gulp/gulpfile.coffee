@@ -257,7 +257,7 @@ runAppTestsFunction = (actionString) ->
     .pipe plumberPlugin()
     .pipe( karmaPlugin
       configFile: 'karma.conf.js'
-      action    : actionString
+      action    : 'watch'
     )
 
 gulp.task 'runAppTests', [], -> runAppTestsFunction('run')
