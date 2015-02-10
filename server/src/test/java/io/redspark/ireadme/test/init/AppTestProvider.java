@@ -26,6 +26,8 @@ public class AppTestProvider {
 	public PersistenceProvider persistenceProvider() {
 		return new JpaPersistenceProvider()
 			.addNativeQuery("delete from ROLES")
+			.addQuery("delete from Step")
+			.addQuery("delete from Action")
 			.addQuery("delete from Tool")
 			.addQuery("delete from Team")
 			.addQuery("delete from User");
