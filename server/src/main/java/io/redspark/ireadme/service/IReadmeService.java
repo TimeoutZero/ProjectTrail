@@ -18,6 +18,9 @@ public class IReadmeService {
 	@Autowired
 	private ActionService actionService;
 	
+	@Autowired
+	private StepService stepService;
+	
 	public TeamService getTeamService() {
 		return teamService;
 	}
@@ -32,5 +35,9 @@ public class IReadmeService {
 	
 	public ActionService getActionService() {
 		return actionService;
+	}
+	
+	public StepService getStepService() {
+		return stepService;
 	}
 }

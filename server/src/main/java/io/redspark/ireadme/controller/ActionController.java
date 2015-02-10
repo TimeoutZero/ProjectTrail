@@ -9,6 +9,7 @@ import io.redspark.ireadme.dto.ActionDTO;
 import io.redspark.ireadme.dto.ToolDTO;
 import io.redspark.ireadme.entity.Action;
 import io.redspark.ireadme.entity.Team;
+import io.redspark.ireadme.entity.Tool;
 import io.redspark.ireadme.form.GenericForm;
 import io.redspark.ireadme.service.IReadmeService;
 
@@ -66,9 +67,10 @@ public class ActionController {
 			@Valid @ModelAttribute GenericForm form) {
   
 		service.getTeamService().exist(teamId);
-		service.getToolService().exist(toolId);
+		Tool tool = service.getToolService().findToolById(toolId);
 		
 		Action action = form.toActionEntity();
+		action.setTool(tool);
 		action = service.getActionService().getRepository().save(action);
 		
 		return new ActionDTO(action);

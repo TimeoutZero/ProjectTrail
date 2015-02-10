@@ -23,6 +23,13 @@ public class Step extends AbstractEntity{
 	public void setIndex(Integer index) {
 		this.index = index;
 	}
-
+	
+	public void setAction(Action action) {
+		this.action = action;
+	}
+	
+	public Action getAction() {
+		return action;
+	}
 	
 }

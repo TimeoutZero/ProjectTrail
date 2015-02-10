@@ -3,6 +3,7 @@ package io.redspark.ireadme.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -18,7 +19,7 @@ public class Action extends AbstractEntity {
 	@ManyToOne
 	private Tool tool;
 	
-	@OneToMany(mappedBy = "step")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "action")
 	private List<Step> steps = new ArrayList<>();
 	
 	public Tool getTool() {
