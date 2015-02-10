@@ -7,7 +7,10 @@ public class StepDTO extends AbstractDTO {
 	private Integer index;
 	
 	public StepDTO(Step step) {
-		this.index = step.getIndex();
+		this.id    		 = step.getId();
+		this.name 		 = step.getName();
+		this.description = step.getDescription();
+		this.index 		 = step.getIndex();
 	}
 	
 	public Integer getIndex() {
