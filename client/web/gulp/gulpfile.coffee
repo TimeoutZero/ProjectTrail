@@ -173,7 +173,7 @@ watch = ->
   gulp.watch(paths.source.coffee.sourceFiles).on('change', (e) ->
     buildAppScripts()
       .on 'end', ->
-        runAppTestsFunction('run')
+        # runAppTestsFunction('watch')
         feedback.fromWatcher( name: 'CoffeeWatcher', file: e)
   )
 
@@ -256,8 +256,8 @@ runAppTestsFunction = (actionString) ->
   gulp.src(paths.spec.js.sourceFiles)
     .pipe plumberPlugin()
     .pipe( karmaPlugin
-      configFile: 'karma.conf.js'
-      action    : 'watch'
+      configFile : 'karma.conf.js'
+      action     : actionString
     )
 
 gulp.task 'runAppTests', [], -> runAppTestsFunction('run')
@@ -321,14 +321,14 @@ gulp.task 'default', [
   'copyResourcesToDevFolder'
   'copyImgToDevFolder'
   'copyIndexToDevFolder'
-  'runDevTests'
+  # 'runDevTests'
 ]
 
 
 # Dev tasks
 # =======================
 gulp.task 'watch'     , ['default'], watch
-gulp.task 'dev'       , ['watch']
+gulp.task 'dev'       , ['watch'], -> runAppTestsFunction('watch')
 gulp.task 'buildDev'  , ['default']
 
 
