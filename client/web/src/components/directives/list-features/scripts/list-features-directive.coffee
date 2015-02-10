@@ -12,9 +12,10 @@ angular.module 'ProjectTrailApp.directives'
     restrict: 'A'
     replace : yes
     scope:
-      list            : "="
-      onClickItem     : "="
-      onClickSettings : "="
+      list                : "="
+      onClickItem         : "="
+      onClickDeleteButton : "="
+      onClickEditButton   : "="
     controller : ['$scope'
       ($scope) ->
         $scope.defaultImgUrl = 'img/main/img/general/default-placeholder-picture.png'
@@ -30,10 +31,13 @@ angular.module 'ProjectTrailApp.directives'
           return item.img or $scope.defaultImgUrl
 
         $scope.clickItemCallback = (item) ->
-          if _.isFunction($scope.onClickItem) then $scope.onClickItem(item)
+          _.isFunction($scope.onClickItem) and $scope.onClickItem(item)
 
-        $scope.clickSettings = (item) ->
-          if _.isFunction($scope.onClickSettings) then $scope.onClickSettings(item)
+        $scope.clickEditButton = (item) ->
+          _.isFunction($scope.onClickEditButton) and $scope.onClickEditButton(item)
+
+        $scope.clickDeleteButton = (item) ->
+          _.isFunction($scope.onClickDeleteButton) and $scope.onClickDeleteButton(item)
 
     ]
     template:"""
@@ -51,7 +55,10 @@ angular.module 'ProjectTrailApp.directives'
                   </div>
                 </div>
 
-                <button class="settings-button" ng-click="clickSettings(item)">Settings</button>
+                <div class="action-buttons-container">
+                  <button class="btn btn-primary" ng-click="clickEditButton(item)">Edit</button>
+                  <button class="btn btn-danger" ng-click="clickDeleteButton(item)">Delete</button>
+                </div>
               </div>
             </li>
           </ul>
