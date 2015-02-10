@@ -6,6 +6,7 @@ import io.redspark.ireadme.entity.Team;
 public class ActionDTO extends AbstractDTO {
 
 	private Long id;
+	private ToolDTO tool;
 	
 	public ActionDTO() {
 		super();
@@ -17,6 +18,8 @@ public class ActionDTO extends AbstractDTO {
 		this.name 		 = action.getName();
 		this.image 		 = action.getImage();
 		this.description = action.getDescription();
+		
+		this.tool = new ToolDTO(action.getTool());
 	}
 	
 	public Long getId() {
@@ -45,6 +48,14 @@ public class ActionDTO extends AbstractDTO {
 	
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	
+	public ToolDTO getTool() {
+		return tool;
+	}
+	
+	public void setTool(ToolDTO tool) {
+		this.tool = tool;
 	}
 	
 	public Team toEntity() {

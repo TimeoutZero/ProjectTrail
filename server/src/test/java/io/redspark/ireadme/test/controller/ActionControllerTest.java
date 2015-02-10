@@ -33,9 +33,12 @@ public class ActionControllerTest extends BasicControllerTest {
 		
 		TeamBuilder redspark = team("redspark", "Imagining better");
 		ToolBuilder holmes = tool("Holmes", "Sistema de gestão inteligente de documentos", redspark);
-		ActionBuilder actionBuilder = action("Reindexar os objetos", "Description", holmes);
-	
 		saveAll();
+
+		ActionBuilder actionBuilder = action("Reindexar os objetos", "Description", holmes.get());
+		
+		saveAll();
+	
 		
 		MockHttpServletRequestBuilder get = get("/{id}", redspark.getId(), holmes.getId(), actionBuilder.getId());
 		
@@ -46,7 +49,8 @@ public class ActionControllerTest extends BasicControllerTest {
 		jsonAssert(result)
 			.assertThat("$.id", equalTo(holmes.getId().intValue()))
 			.assertEquals("$.name", action.getName())
-			.assertEquals("$.description", action.getDescription());
+			.assertEquals("$.description", action.getDescription())
+			.assertEquals("$.tool.id", holmes.getId().intValue());
 	}
 	
 	@Test
@@ -93,10 +97,13 @@ public class ActionControllerTest extends BasicControllerTest {
 		
 		TeamBuilder redspark = team("redspark", "Imagining better");
 		ToolBuilder tool = tool("Generic Tool", "Generic Description", redspark);
-		ActionBuilder action = action("Reindexar os objetos", "Description", tool);
 
 		saveAll();
-		 
+		
+		ActionBuilder action = action("Reindexar os objetos", "Description", tool.get());
+		
+		saveAll();
+		
 		MockHttpServletRequestBuilder put = put("/{id}", redspark.getId(), tool.getId(), action.getId());
 		put.param("name", "Reindexar");
 		put.param("image", "img/main/img/mocks/holmes.jpg");
@@ -116,7 +123,8 @@ public class ActionControllerTest extends BasicControllerTest {
 		
 		TeamBuilder redspark = team("redspark", "Imagining better");
 		ToolBuilder tool = tool("Generic Tool", "Generic Description", redspark);
-		ActionBuilder action = action("Reindexar os objetos", "Description", tool);
+		saveAll();
+		ActionBuilder action = action("Reindexar os objetos", "Description", tool.get());
 		
 		saveAll();
 		
