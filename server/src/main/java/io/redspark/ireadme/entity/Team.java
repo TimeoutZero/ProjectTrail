@@ -13,7 +13,7 @@ import org.hibernate.envers.Audited;
 @Entity
 @Audited
 @Table(name = "team")
-public class Team extends AbstractEntity{
+public class Team extends AbstractFormEntity{
 
 	@ManyToMany
 	private Collection<User> users = new ArrayList<>();

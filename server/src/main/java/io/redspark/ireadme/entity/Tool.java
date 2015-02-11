@@ -14,7 +14,7 @@ import org.hibernate.envers.Audited;
 @Entity
 @Audited
 @Table(name = "tool")
-public class Tool extends AbstractEntity {
+public class Tool extends AbstractFormEntity {
 
 	@ManyToOne
 	private Team team;

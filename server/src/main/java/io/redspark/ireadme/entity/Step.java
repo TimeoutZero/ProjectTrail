@@ -9,7 +9,7 @@ import org.hibernate.envers.Audited;
 @Entity
 @Audited
 @Table(name = "step")
-public class Step extends AbstractEntity{
+public class Step extends AbstractFormEntity{
 
 	@ManyToOne
 	private Action action;

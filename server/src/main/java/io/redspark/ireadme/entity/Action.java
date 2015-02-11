@@ -14,7 +14,7 @@ import org.hibernate.envers.Audited;
 @Entity
 @Audited
 @Table(name = "action")
-public class Action extends AbstractEntity {
+public class Action extends AbstractFormEntity {
 
 	@ManyToOne
 	private Tool tool;
