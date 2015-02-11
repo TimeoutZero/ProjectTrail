@@ -17,7 +17,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @Entity
 @Audited
 @Table(name = "user")
-public class User extends AbstractFormEntity {
+public class User extends AbstractEntity {
 	
 	public static final String ROLE_USER  = "ROLE_USER";
 	public static final String ROLE_ADMIN = "ROLE_ADMIN";
