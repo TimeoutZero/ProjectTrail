@@ -43,9 +43,11 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
 				.anyRequest().authenticated()
 				.and()
 			.formLogin()
-				.loginProcessingUrl("/login/authenticate")
+				.loginProcessingUrl("/login")
 				.successHandler(customAuthenticationSuccessHandler)
 				.failureHandler(customAuthenticateFailureHandler)
-				.permitAll();
+				.permitAll()
+			.and()
+				.logout().logoutUrl("/logout");
 	}
 }
