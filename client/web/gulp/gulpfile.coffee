@@ -173,7 +173,7 @@ watch = ->
   gulp.watch(paths.source.coffee.sourceFiles).on('change', (e) ->
     buildAppScripts()
       .on 'end', ->
-        runAppTestsFunction('run')
+        # runAppTestsFunction('watch')
         feedback.fromWatcher( name: 'CoffeeWatcher', file: e)
   )
 
@@ -256,8 +256,8 @@ runAppTestsFunction = (actionString) ->
   gulp.src(paths.spec.js.sourceFiles)
     .pipe plumberPlugin()
     .pipe( karmaPlugin
-      configFile: 'karma.conf.js'
-      action    : 'watch'
+      configFile : 'karma.conf.js'
+      action     : actionString
     )
 
 gulp.task 'runAppTests', [], -> runAppTestsFunction('run')
@@ -303,7 +303,7 @@ gulp.task 'buildAppScripts'              , ['cleanDev'                ], buildAp
 gulp.task 'buildMarkup'                  , ['cleanDev'                ], -> copy( paths: paths.source.html.sourceFiles, dest: paths.dev.htmlDirectory )
 gulp.task 'copyResourcesToDevFolder'     , ['cleanDev'                ], -> copy( paths: paths.source.resourcesFiles, dest: paths.dev.resourcesDirectory)
 gulp.task 'copyImgToDevFolder'           , ['cleanDev'                ], -> copy( paths: paths.source.img.sourceFiles, dest: paths.dev.imgDirectory)
-gulp.task 'copyIndexToDevFolder'         , ['copyResourcesToDevFolder'], -> copy( paths: paths.source.indexFile, dest: paths.dev.directory).on 'end', includeSources
+gulp.task 'copyIndexToDevFolder'         , ['copyResourcesToDevFolder', 'buildAppScripts'], -> copy( paths: paths.source.indexFile, dest: paths.dev.directory).on 'end', includeSources
 gulp.task 'runDevTests'                  , ['buildAppScripts', 'buildVendorsScripts'], -> runAppTestsFunction('run')
 
 
@@ -321,14 +321,14 @@ gulp.task 'default', [
   'copyResourcesToDevFolder'
   'copyImgToDevFolder'
   'copyIndexToDevFolder'
-  'runDevTests'
+  # 'runDevTests'
 ]
 
 
 # Dev tasks
 # =======================
 gulp.task 'watch'     , ['default'], watch
-gulp.task 'dev'       , ['watch']
+gulp.task 'dev'       , ['watch'], -> runAppTestsFunction('watch')
 gulp.task 'buildDev'  , ['default']
 
 

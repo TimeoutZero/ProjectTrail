@@ -8,7 +8,7 @@ describe 'Directive: MainBar', () ->
   # =============================================
   # Import modules
   # =============================================
-  beforeEach module('builds/dev/views/components/directives/main-bar/views/main-bar.html')
+  beforeEach module('views/components/directives/main-bar/views/main-bar.html')
   beforeEach module('ProjectTrailApp.scripts')
   beforeEach module('stateMock')
 
@@ -28,7 +28,7 @@ describe 'Directive: MainBar', () ->
     $state       = _$state_
     $compile     = _$compile_
 
-    elem = angular.element("<div main-bar></div>")
+    elem = angular.element("<main-bar></main-bar>")
     elem = $compile(elem)($scope)
     $scope.$digest()
     isolateScope = elem.isolateScope()
@@ -42,18 +42,18 @@ describe 'Directive: MainBar', () ->
 
     iit 'When the $state changes', ->
 
-        # inject ($timeout) ->
+        inject ($timeout) ->
           console.log 'a'
-          # spyOn($scope, 'changeSelectedItem')
+          spyOn(isolateScope, 'changeSelectedItem').andCallThrough()
 
-          # $state.current =
-          #   name: 'team.list'
-          # $state.expectTransitionTo 'tool.list'
-          # $scope.state = $state
+          $state.current =
+            name: 'team.list'
+          $state.expectTransitionTo 'tool.list'
+          isolateScope.state = $state
 
-          # $state.go 'tool.list'
-          # $timeout.flush(1)
+          $state.go 'tool.list'
+          $timeout.flush(1)
 
-          # expect($scope.state.current.name).toEqual 'tool.list'
-          # expect($scope.changeSelectedItem).toHaveBeenCalled()
-          # expect($scope.curentItem).toEqual {name: 'tool.list'}
+          expect(isolateScope.state.current.name).toEqual 'tool.list'
+          expect(isolateScope.changeSelectedItem).toHaveBeenCalled()
+          expect(isolateScope.currentItem.mainState).toEqual 'tool.list'
