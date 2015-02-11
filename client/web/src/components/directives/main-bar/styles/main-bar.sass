@@ -13,6 +13,7 @@
     margin-right : auto
     height       : $mainBarHeight * 2
 
+    +transition(height, height, 0.3s)
     @extend .purple-bg-gradient
 
     & > div
@@ -25,10 +26,11 @@
         font-size   : 3em
         line-height : $mainBarHeight * 2
 
+        +transition(all, all, 0.3s)
+
   .main-bar-sub-content
     float        : left
     width        : 100%
-    max-width    : 1024px
     margin-left  : auto
     margin-right : auto
     height       : $mainBarHeight
@@ -139,3 +141,11 @@
     top         : 0
     width       : 298px
 
+  &.main-bar-minimized
+    .main-bar-content
+      height : $mainBarHeight
+
+      & > div
+        & > span
+          font-size   : 1.5em
+          line-height : $mainBarHeight

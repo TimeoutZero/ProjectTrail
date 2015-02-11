@@ -8,7 +8,7 @@ angular.module 'ProjectTrailApp.directives'
   # =============================================
   # mainMenu
   # =============================================
-  .directive 'mainBar', ['$filter', '$rootScope', '$state', '$timeout', ($filter, $rootScope, $state, $timeout) ->
+  .directive 'mainBar', ['$filter', '$rootScope', '$state', '$timeout', '$window', '$interval', ($filter, $rootScope, $state, $timeout, $window, $interval) ->
     restrict    : 'AE'
     replace     : yes
     scope       : {}
@@ -18,6 +18,7 @@ angular.module 'ProjectTrailApp.directives'
       # =============================================
       # Attributes
       # =============================================
+      scrollTimeout            = null
       scope.currentParentState = null
       scope.isOpen             = no
       scope.state              = $state
@@ -36,12 +37,28 @@ angular.module 'ProjectTrailApp.directives'
         scope.currentItem        = _.findWhere scope.menuItems, {mainState: $state.current.name}
 
       # =============================================
-      # Watcher
+      # Watcher & Events
       # =============================================
       $timeout ->
           scope.$watch 'state.current.name', ->
             scope.changeSelectedItem()
         , 0
 
-      return
+      scope.$on '$destroy', ->
+        $timeout.cancel scrollTimeout
+        scrollTimeout = null
+
+      $(document).scroll ->
+        unless scrollTimeout
+          scrollTimeout = $timeout(->
+            # Clear $timeout
+            $timeout.cancel scrollTimeout
+            scrollTimeout = null
+
+            # Add/Remove class
+            scrollTop     = $(window).scrollTop()
+            scrollTrigger = 50
+            element.addClass('main-bar-minimized')    if scrollTop > scrollTrigger
+            element.removeClass('main-bar-minimized') if scrollTop < scrollTrigger
+          , 50)
   ]

@@ -12,7 +12,7 @@ angular.module 'ProjectTrailApp'
 
     # Default State
     # =============================================
-    $urlRouterProvider.otherwise('/team/list')
+    $urlRouterProvider.otherwise('/login')
 
 
   ])
