@@ -9,9 +9,9 @@ import static org.hamcrest.Matchers.contains;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasSize;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import io.redspark.ireadme.entity.Action;
-import io.redspark.ireadme.entity.Step;
-import io.redspark.ireadme.entity.Tool;
+
+import java.io.UnsupportedEncodingException;
+
 import io.redspark.ireadme.test.builders.ActionBuilder;
 import io.redspark.ireadme.test.builders.StepBuilder;
 import io.redspark.ireadme.test.builders.TeamBuilder;
@@ -39,12 +39,7 @@ public class StepControllerTest extends BasicControllerTest {
 
 		TeamBuilder redspark = team("redspark", "Imagining better");
 		ToolBuilder holmes = tool("Holmes", "Sistema de gestão inteligente de documentos", redspark);
-		
-		saveAll();
-
 		ActionBuilder reindexar = action("Reindexar os objetos", "Description", holmes.get());
-
-		saveAll();
 		
 		StepBuilder step1 = step("Abrir script.", "Abrir o script na url xxxxxxxxx.com", 0, reindexar.get());
 		
@@ -66,7 +61,6 @@ public class StepControllerTest extends BasicControllerTest {
 		
 		TeamBuilder redspark = team("redspark", "Imagining better");
 		ToolBuilder holmes = tool("Holmes", "Sistema de gestão inteligente de documentos", redspark);
-		
 		ActionBuilder reindexar = action("Reindexar os objetos", "Description", holmes.get());
 		
 		saveAll();
@@ -120,6 +114,54 @@ public class StepControllerTest extends BasicControllerTest {
 			.assertEquals("$.name", "Abrir script")
 			.assertEquals("$.description", "1- abrir o script na url xxxxxxxxx.com")
 			.assertEquals("$.index", 0);
+	}
+	
+	@Test
+	public void shouldUpdateStep() throws Exception {
+		
+		TeamBuilder redspark = team("redspark", "Imagining better");
+		ToolBuilder holmes = tool("Holmes", "Sistema de gestão inteligente de documentos", redspark);
+		ActionBuilder reindexar = action("Reindexar os objetos", "Description", holmes.get());
+		
+		StepBuilder step1 = step("Abrir script.", "Abrir o script na url xxxxxxxxx.com", 0, reindexar.get());
+		
+		saveAll();
+		 
+		MockHttpServletRequestBuilder put = put("/{id}", redspark.getId(), holmes.getId(), reindexar.getId(), step1.getId());
+		put.param("name", "Abrir script xptos.");
+		put.param("description", "Abrir URL para rodar o script.");
+		put.param("index", "1");
+		
+		MvcResult result = perform(put, status().isOk());
+		
+		jsonAssert(result)
+			.assertThat("$.id", equalTo(step1.getId().intValue()))
+			.assertEquals("$.name", "Abrir script xptos.")
+			.assertEquals("$.description", "Abrir URL para rodar o script.")
+			.assertEquals("$.index", 1);
+	}
+	
+	@Test
+	public void shouldDeleteStep() throws Exception { 
+		
+		TeamBuilder redspark = team("redspark", "Imagining better");
+		ToolBuilder holmes = tool("Holmes", "Sistema de gestão inteligente de documentos", redspark);
+		ActionBuilder reindexar = action("Reindexar os objetos", "Description", holmes.get());
+		
+		StepBuilder step1 = step("Abrir script.", "Abrir o script na url xxxxxxxxx.com", 0, reindexar.get());
+		
+		saveAll();
+		 
+		MockHttpServletRequestBuilder delete = delete("/{id}", redspark.getId(), holmes.getId(), reindexar.getId(), step1.getId());
+	
+		MvcResult result = perform(delete, status().isOk());
+		
+		jsonAssert(result)
+			.assertThat("$.id", equalTo(step1.getId().intValue()))
+			.assertEquals("$.name", "Abrir script.")
+			.assertEquals("$.description", "Abrir o script na url xxxxxxxxx.com")
+			.assertEquals("$.index", 0);
+		
 	}
 	
 }

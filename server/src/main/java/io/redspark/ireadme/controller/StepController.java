@@ -1,7 +1,9 @@
 package io.redspark.ireadme.controller;
 
+import static org.springframework.web.bind.annotation.RequestMethod.DELETE;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
+import static org.springframework.web.bind.annotation.RequestMethod.PUT;
 import io.redspark.ireadme.dto.StepDTO;
 import io.redspark.ireadme.entity.Action;
 import io.redspark.ireadme.entity.Step;
@@ -87,4 +89,46 @@ public class StepController {
 		
 		return new StepDTO(step);
 	}
+	
+	@RequestMapping(value = "/{id}", method = PUT)
+	public StepDTO update(
+			@PathVariable("teamId") Long teamId,
+			@PathVariable("toolId") Long toolId,
+			@PathVariable("actionId") Long actionId,
+			@PathVariable("id") Long id,
+			@Valid @ModelAttribute StepForm form) {
+		
+		service.getTeamService().exist(teamId);
+		service.getToolService().exist(toolId);
+		service.getActionService().exist(actionId);
+		
+		Step step = service.getStepService().findById(id);
+		step.setName(form.getName());
+		step.setDescription(form.getDescription());
+		step.setIndex(form.getIndex());
+		
+		step = service.getStepService().getRepository().save(step);
+	
+		return new StepDTO(step);
+	}
+	
+	@RequestMapping(value = "/{id}", method = DELETE)
+	public StepDTO delete(
+			@PathVariable("teamId") Long teamId,
+			@PathVariable("toolId") Long toolId,
+			@PathVariable("actionId") Long actionId,
+			@PathVariable("id") Long id
+			) {
+
+		service.getTeamService().exist(teamId);
+		service.getToolService().exist(toolId);
+		service.getActionService().exist(actionId);
+		
+		Step step = service.getStepService().findById(id);
+		service.getStepService().getRepository().delete(step);
+		
+		return new StepDTO(step); 
+	}
+	
+	
 }

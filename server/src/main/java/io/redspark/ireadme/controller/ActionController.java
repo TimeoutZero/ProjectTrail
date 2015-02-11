@@ -36,7 +36,10 @@ public class ActionController {
 	@Transactional(readOnly = true)
 	@RequestMapping(method = GET)
 	public Collection<ToolDTO> list(
-			@PathVariable("teamId") Long teamId) {
+		@PathVariable("teamId") Long teamId,
+		@PathVariable("toolId") Long toolId) {
+
+		service.getToolService().exist(toolId);
 		
 		Team team = service.getTeamService().findTeamById(teamId);		
 		
