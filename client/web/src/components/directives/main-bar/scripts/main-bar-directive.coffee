@@ -48,7 +48,7 @@ angular.module 'ProjectTrailApp.directives'
         $timeout.cancel scrollTimeout
         scrollTimeout = null
 
-      $($window).scroll ->
+      $(document).scroll ->
         unless scrollTimeout
           scrollTimeout = $timeout(->
             # Clear $timeout
@@ -56,8 +56,8 @@ angular.module 'ProjectTrailApp.directives'
             scrollTimeout = null
 
             # Add/Remove class
-            scrollTop     = $($window).scrollTop()
-            scrollTrigger = 10
+            scrollTop     = $(window).scrollTop()
+            scrollTrigger = 50
             element.addClass('main-bar-minimized')    if scrollTop > scrollTrigger
             element.removeClass('main-bar-minimized') if scrollTop < scrollTrigger
           , 50)
