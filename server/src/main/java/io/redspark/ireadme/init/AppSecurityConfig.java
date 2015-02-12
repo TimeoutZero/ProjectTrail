@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.annotation.web.servlet.configuration.EnableWebMvcSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
@@ -25,6 +26,9 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Autowired
 	private AuthenticationSuccessHandler customAuthenticationSuccessHandler;
+	
+	@Autowired 
+	private AuthenticationEntryPoint customAuthenticationEntryPoint;
 
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder builder) throws Exception{
@@ -43,11 +47,20 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
 				.anyRequest().authenticated()
 				.and()
 			.formLogin()
-				.loginProcessingUrl("/login")
+				.loginProcessingUrl("/api/login")
 				.successHandler(customAuthenticationSuccessHandler)
 				.failureHandler(customAuthenticateFailureHandler)
 				.permitAll()
-			.and()
-				.logout().logoutUrl("/logout");
+				.and()
+			.logout()
+				.logoutUrl("/api/logout")
+				.deleteCookies("JSESSIONID")
+				.invalidateHttpSession(true)
+				.and()
+			.exceptionHandling()
+				.authenticationEntryPoint(customAuthenticationEntryPoint)
+				.and()
+			.sessionManagement()	
+				.maximumSessions(1);
 	}
 }
