@@ -2,6 +2,9 @@
 
   <!-- Barra Principal -->
   <!-- <header main-bar has-menu="true"></header> -->
+   <md-button class="md-fab md-primary md-hue-2" aria-label="Create new team" ng-click="openFormDialog()">
+        <span class="glyphicon glyphicon-plus"></span>
+    </md-button>
 
   <!-- Cover Image -->
   <div id="team-img"></div>
@@ -24,7 +27,7 @@
 
     <!-- List -->
     <div list-features list="teams"
-      on-click-item="onClickItem"
+      on-click-item="onClickItem"d
       on-click-settings="showSettings"
       on-click-edit-button="openFormDialog"
       on-click-delete-button="deleteItem"></div>
