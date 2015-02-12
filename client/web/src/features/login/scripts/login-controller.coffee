@@ -16,8 +16,8 @@ angular.module 'ProjectTrailApp.controllers'
       # =============================================
       @facebookOptions  = scope : 'email, publish_actions', auth_type: 'rerequest'
       $scope.user       =
-        firstName  : null
-        email      : null
+        userName  : "admin@admin.com"
+        password  : 12345
 
       $scope.ableToConnectWithFacebook  = yes
 
@@ -49,7 +49,8 @@ angular.module 'ProjectTrailApp.controllers'
 
       $scope.doLogin  = ->
         promise = LoginService.login($scope.user)
-        promise.success (data, status, headers, config) -> $scope.openNotificationModal('Connected')
+        promise.success (data, status, headers, config) ->
+          $state.go 'team.list'
         promise.error (data, status, headers, config, statusText) ->
           $scope.openNotificationModal('Could not connect')
 

@@ -52,15 +52,15 @@
                   <input type="email"
                     id         = "user-email"
                     placeholder= "Nome"
-                    ng-model   = "user.firstName"
+                    ng-model   = "user.userName"
                     name       = "user-email"
                     class      = "form-control myo-input text-center"
                     ng-class="{
                       'has-error' : loginForm['user-email'].$invalid && !loginForm['user-email'].$pristine,
-                      'filled'    : user.firstName.length > 0
+                      'filled'    : user.userName.length > 0
                     }"
                     required
-                    ng-value="'admin@admin.com.br'">
+                    >
                   <p
                     ng-class="{'help-block': true, 'help-error': true}"
                     ng-show="loginForm['user-email'].$error.required && !loginForm['user-email'].$pristine">
@@ -80,14 +80,14 @@
                     id          = "user-password"
                     placeholder = "E-mail"
                     name        = "user-password"
-                    ng-model    = "user.email"
+                    ng-model    = "user.password"
                     class       = "form-control myo-input text-center"
                     ng-class    = "{
                       'has-error' : loginForm['user-password'].$invalid && !loginForm['user-password'].$pristine,
-                      'filled'    : user.email.length > 0
+                      'filled'    : user.password.length > 0
                     }"
                     required
-                    ng-value="'admin'">
+                    >
                   <p
                     ng-class="{'help-block': true, 'help-error': true}"
                     ng-show="loginForm['user-password'].$error.required && !loginForm['user-email'].$pristine">

@@ -14,9 +14,11 @@ angular.module 'ProjectTrailApp.services'
 
       login: (data) ->
         $http
-          url         : APP_BASE_URL + 'login'
+          url         : APP_BASE_URL + 'login/authenticate'
           method      : 'POST'
           data        : data
+          headers     :
+            "Content-type": "application/x-www-form-urlencoded"
 
       loginWithFacebook: (data) ->
          $http
@@ -32,7 +34,7 @@ angular.module 'ProjectTrailApp.services'
 
       loggout: ->
         $http
-          url         : APP_BASE_URL + 'login/loggout'
+          url         : APP_BASE_URL + 'loggout'
           method      : 'POST'
     }
 
