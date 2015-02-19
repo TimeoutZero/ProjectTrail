@@ -52,12 +52,12 @@
                   <input type="email"
                     id         = "user-email"
                     placeholder= "Nome"
-                    ng-model   = "user.userName"
+                    ng-model   = "user.username"
                     name       = "user-email"
                     class      = "form-control myo-input text-center"
                     ng-class="{
                       'has-error' : loginForm['user-email'].$invalid && !loginForm['user-email'].$pristine,
-                      'filled'    : user.userName.length > 0
+                      'filled'    : user.username.length > 0
                     }"
                     required
                     >
