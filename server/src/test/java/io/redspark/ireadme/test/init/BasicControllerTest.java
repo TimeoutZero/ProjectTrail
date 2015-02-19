@@ -74,7 +74,7 @@ public abstract class BasicControllerTest {
 
 	public BasicControllerTest signIn() throws Exception {
 
-		MockHttpServletRequestBuilder post = MockMvcRequestBuilders.post("/login/authenticate");
+		MockHttpServletRequestBuilder post = MockMvcRequestBuilders.post("/api/login");
 		post.param("username", "lucas.gmmartins@gmail.com");
 		post.param("password", "12345");
 
@@ -91,7 +91,6 @@ public abstract class BasicControllerTest {
 			}
 		});
 	}
-	
 
 	// UTIL
 	
