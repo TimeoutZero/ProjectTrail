@@ -9,9 +9,6 @@ import static org.hamcrest.Matchers.contains;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasSize;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
-import java.io.UnsupportedEncodingException;
-
 import io.redspark.ireadme.test.builders.ActionBuilder;
 import io.redspark.ireadme.test.builders.StepBuilder;
 import io.redspark.ireadme.test.builders.TeamBuilder;
@@ -161,7 +158,6 @@ public class StepControllerTest extends BasicControllerTest {
 			.assertEquals("$.name", "Abrir script.")
 			.assertEquals("$.description", "Abrir o script na url xxxxxxxxx.com")
 			.assertEquals("$.index", 0);
-		
 	}
 	
 }
