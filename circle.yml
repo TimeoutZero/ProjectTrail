@@ -5,4 +5,5 @@ machine:
 
 test:
   override: 
-    - cd server; mvn clean test; 
+    - cd server; mvn clean package;
+    - $CIRCLE_ARTIFACTS/target/ireadme.war
