@@ -24,7 +24,7 @@ angular.module 'ProjectTrailApp.directives'
       scope.state              = $state
 
       scope.menuItems = [
-        { name: 'Team list', mainState: 'team.list', parentState: 'team' }
+        { name: 'Teams or Products', mainState: 'team.list', parentState: 'team' }
         { name: 'Tool list', mainState: 'tool.list', parentState: 'tool' }
       ]
 
