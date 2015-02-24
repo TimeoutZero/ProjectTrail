@@ -16,7 +16,7 @@ angular.module 'ProjectTrailApp.controllers'
       # =============================================
       @facebookOptions  = scope : 'email, publish_actions', auth_type: 'rerequest'
       $scope.user       =
-        userName  : "admin@admin.com"
+        username  : "admin@admin.com"
         password  : 12345
 
       $scope.ableToConnectWithFacebook  = yes

@@ -9,6 +9,7 @@ scripts/features/team/scripts/team-routes.js
 scripts/features/team/scripts/team-controller.js
 scripts/features/team/scripts/list-team-controller.js
 scripts/features/team/scripts/form-team-controller.js
+scripts/features/team/scripts/team-service.js
 
 scripts/features/tool/scripts/tool-routes.js
 scripts/features/tool/scripts/tool-controller.js
