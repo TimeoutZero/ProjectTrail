@@ -254,9 +254,9 @@
 	
 	<repositories>
 		<repository>
-			<id>DClick-snapshots</id>
-			<name>Dclick snapshots</name>
-			<url>http://office-sp.dclick.com.br/nexus/content/repositories/snapshots</url>
+			<id>DClick Geral</id>
+			<name>Dclick geral</name>
+			<url>http://office-sp.dclick.com.br/nexus/content/groups/dclick</url>
 		</repository>
 	</repositories>
 </project>
