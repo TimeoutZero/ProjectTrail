@@ -1,4 +1,11 @@
 ---
 
-base:
-  image: centos:centos7
+tomcat:
+  image: tomcat7
+  ports: 
+    - "8080:8080"
+
+nginx:
+  image: nginx
+  ports:
+    - "80:80"

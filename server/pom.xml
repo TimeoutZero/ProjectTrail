@@ -248,7 +248,6 @@
 					<path>/ireadme</path>
 				</configuration>
 			</plugin>
- 
 		</plugins>
 	</build> 
 	
