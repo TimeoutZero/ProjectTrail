@@ -1,0 +1,8 @@
+---
+machine:
+  java:
+    version: java8
+
+test:
+  override: 
+    - cd server; mvn clean install;
