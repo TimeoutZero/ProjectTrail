@@ -1,7 +1,7 @@
 ---
 machine:
   java:
-    version: java8
+    version: 1.8.0_31
 
 test:
   override: 
