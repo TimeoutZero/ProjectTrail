@@ -1,11 +1,11 @@
 ---
 
 tomcat:
-  image: tomcat7
+  image: lucasgmartins/tomcat7
   ports: 
     - "8080:8080"
 
 nginx:
-  image: nginx
+  image: lucasgmartins/nginx
   ports:
     - "80:80"
