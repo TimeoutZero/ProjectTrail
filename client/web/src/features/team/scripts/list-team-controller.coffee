@@ -8,13 +8,13 @@ angular.module 'ProjectTrailApp.controllers'
   # =============================================
   # ToolController
   # =============================================
-  .controller 'ListTeamController', [ '$rootScope', '$scope', '$state', '$mdBottomSheet', '$mdDialog', '$mdToast',
-    ($rootScope, $scope, $state, $mdBottomSheet, $mdToast) ->
+  .controller 'ListTeamController', [ '$rootScope', '$scope', '$state', '$mdBottomSheet', '$mdDialog', '$mdToast', 'TeamService',
+    ($rootScope, $scope, $state, $mdBottomSheet, $mdDialog, $mdToast, TeamService) ->
 
       # =============================================
       # Attributes
       # =============================================
-      $scope.teams       = $rootScope.teams
+      # $scope.teams       = $rootScope.teams
       $scope.currentTeam = null
 
       # =============================================
@@ -56,7 +56,9 @@ angular.module 'ProjectTrailApp.controllers'
       # =============================================
       # Initialize
       # =============================================
-
+      promise = TeamService.list()
+      promise.success (data) ->
+        $scope.teams = data
 
       return @
 
