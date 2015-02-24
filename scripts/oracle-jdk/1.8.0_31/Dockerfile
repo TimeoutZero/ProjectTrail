@@ -8,4 +8,4 @@ RUN rm jdk8.rpm
 ENV JAVA_HOME "/usr/java/jdk1.8.0_31"
 ENV PATH $PATH:$JAVA_HOME/bin
 
-CMD ["java"] -version
+CMD ["java", "-version"]
