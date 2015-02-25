@@ -6,4 +6,4 @@ machine:
 test:
   override: 
     - cd server; mvn clean package;
-    - /home/ubuntu/ireadme/server/target/ireadme.war \ > $CIRCLE_ARTIFACTS/ireadme.war
+    - cd server; target/ireadme.war \ > $CIRCLE_ARTIFACTS/ireadme.war
