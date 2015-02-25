@@ -6,7 +6,4 @@ machine:
 test:
   override: 
     - cd server; mvn clean package;
-
-general:
-  artifacts:
-    - "target/ireadme.war"
+    - cp target/ireadme.war $CIRCLE_ARTIFACTS/ireadme.war
