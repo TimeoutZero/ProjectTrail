@@ -1,0 +1,46 @@
+---
+
+#Infrastrucure Configuration
+
+nginx:
+  image: nginx
+  ports:
+    - "80:80"
+  links:
+    - core
+  volumes:
+    - flice-clients/default.conf:/etc/nginx/conf.d/default.conf
+    - flice-clients/web/builds/dev/:/usr/share/nginx/html
+
+mysql:
+  image: mysql
+  ports:
+    - "3307:3306"
+  environment:
+    MYSQL_DATABASE      : ireadme
+    MYSQL_ROOT_PASSWORD : ireadme
+
+#Application Configuration
+
+core:
+  image: lucasgmartins/java8
+  volumes:
+    - server/target/ireadme.jar:/app/ireadme.jar
+  ports:
+    - "8080:8080"
+  links:
+    - mysql
+  command: java -jar /app/ireadme.jar
+
+
+core:
+  image: lucasgmartins/java8
+  volumes:
+    - flice-projects/flice-core/target/flice-core.jar:/app/flice-core.jar
+    - flice-projects/flice-core/src/main/resources/config/docker.yml:/app/docker.yml
+  ports:
+    - "8080:8080"
+    - "9090:9090"
+  links:
+    - mysql
+    - "ambassador:security"
