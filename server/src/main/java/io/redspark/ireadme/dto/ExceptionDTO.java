@@ -1,5 +1,9 @@
 package io.redspark.ireadme.dto;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter @Setter
 public class ExceptionDTO {
 
 	private String message;
@@ -13,13 +17,5 @@ public class ExceptionDTO {
 		super();
 		this.message = message;
 		this.stacktrace = stacktrace;
-	}
-
-	public String getStacktrace() {
-		return stacktrace;
-	}
-
-	public String getMessage() {
-		return message;
 	}
 }

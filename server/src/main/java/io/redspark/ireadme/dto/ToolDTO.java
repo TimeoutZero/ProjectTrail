@@ -1,7 +1,10 @@
 package io.redspark.ireadme.dto;
 
 import io.redspark.ireadme.entity.Tool;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter @Setter
 public class ToolDTO extends AbstractDTO {
 
 	private Long id;
@@ -18,31 +21,4 @@ public class ToolDTO extends AbstractDTO {
 		this.description = tool.getDescription();
 	}
 	
-	public Long getId() {
-		return id;
-	}
-	
-	public String getName() {
-		return name;
-	}
-	
-	public void setName(String name) {
-		this.name = name;
-	}
-	
-	public String getImage() {
-		return image;
-	}
-	
-	public void setImage(String image) {
-		this.image = image;
-	}
-	
-	public String getDescription() {
-		return description;
-	}
-	
-	public void setDescription(String description) {
-		this.description = description;
-	}
 }

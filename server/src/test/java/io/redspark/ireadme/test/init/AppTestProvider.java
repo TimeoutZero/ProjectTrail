@@ -2,14 +2,12 @@ package io.redspark.ireadme.test.init;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
 
 import aleph.ChainPersistenceProvider;
 import aleph.ContextUtil;
 import aleph.PersistenceProvider;
 
 @Configuration
-@PropertySource("classpath:config/test.properties")
 public class AppTestProvider {
 
 	@Bean
@@ -21,7 +19,6 @@ public class AppTestProvider {
 	public ChainPersistenceProvider chainPersistenceProvider() {
 		return new ChainPersistenceProvider();
 	}
-
 	@Bean
 	public PersistenceProvider persistenceProvider() {
 		return new JpaPersistenceProvider()

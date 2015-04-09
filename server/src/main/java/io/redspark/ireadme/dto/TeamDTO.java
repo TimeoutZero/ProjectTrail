@@ -1,11 +1,15 @@
 package io.redspark.ireadme.dto;
 
-import java.util.ArrayList;
-import java.util.Collection;
-
 import io.redspark.ireadme.entity.Team;
 import io.redspark.ireadme.entity.User;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter @Setter
 public class TeamDTO extends AbstractDTO {
 
 	private Long id;
@@ -25,38 +29,6 @@ public class TeamDTO extends AbstractDTO {
 		for (User user : team.getUsers()) {
 			this.users.add(new UserDTO(user));
 		}
-	}
-	
-	public Long getId() {
-		return id;
-	}
-	
-	public String getName() {
-		return name;
-	}
-	
-	public void setName(String name) {
-		this.name = name;
-	}
-	
-	public String getImage() {
-		return image;
-	}
-	
-	public void setImage(String image) {
-		this.image = image;
-	}
-	
-	public String getDescription() {
-		return description;
-	}
-	
-	public void setDescription(String description) {
-		this.description = description;
-	}
-	
-	public Collection<UserDTO> getUsers() {
-		return users;
 	}
 	
 	public Team toEntity() {

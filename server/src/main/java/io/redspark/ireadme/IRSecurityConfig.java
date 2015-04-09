@@ -1,34 +1,36 @@
-package io.redspark.ireadme.init;
+package io.redspark.ireadme;
+
+import io.redspark.ireadme.security.CustomAuthenticationEntryPoint;
+import io.redspark.ireadme.security.CustomAuthenticationFailureHandler;
+import io.redspark.ireadme.security.CustomAuthenticationSuccessHandler;
+import io.redspark.ireadme.security.CustomUserDetailsService;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.ComponentScan;
+import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.annotation.web.servlet.configuration.EnableWebMvcSecurity;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.web.AuthenticationEntryPoint;
-import org.springframework.security.web.authentication.AuthenticationFailureHandler;
-import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 @Configuration
 @EnableWebMvcSecurity
-@ComponentScan("io.redspark.ireadme.security")
-public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
-
+@Order(SecurityProperties.ACCESS_OVERRIDE_ORDER)
+public class IRSecurityConfig extends WebSecurityConfigurerAdapter {
+ 
 	@Autowired
-	private UserDetailsService customUserDetailsService;
+	private CustomUserDetailsService customUserDetailsService;
 	
 	@Autowired
-	private AuthenticationFailureHandler customAuthenticateFailureHandler;
+	private CustomAuthenticationFailureHandler customAuthenticateFailureHandler;
 	
 	@Autowired
-	private AuthenticationSuccessHandler customAuthenticationSuccessHandler;
+	private CustomAuthenticationSuccessHandler customAuthenticationSuccessHandler;
 	
 	@Autowired 
-	private AuthenticationEntryPoint customAuthenticationEntryPoint;
+	private CustomAuthenticationEntryPoint customAuthenticationEntryPoint;
 
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder builder) throws Exception{

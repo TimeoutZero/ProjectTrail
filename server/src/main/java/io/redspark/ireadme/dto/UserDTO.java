@@ -1,7 +1,10 @@
 package io.redspark.ireadme.dto;
 
 import io.redspark.ireadme.entity.User;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter @Setter
 public class UserDTO {
 
 	private Long id;
@@ -15,14 +18,6 @@ public class UserDTO {
 		super();
 		this.id    = user.getId();
 		this.email = user.getEmail();
-	}
-
-	public String getEmail() {
-		return email;
-	}
-	
-	public Long getId() {
-		return id;
 	}
 
 }

@@ -9,10 +9,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import org.hibernate.envers.Audited;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
-@Audited
+@Getter @Setter
 @Table(name = "tool")
 public class Tool extends AbstractFormEntity {
 
@@ -24,21 +25,5 @@ public class Tool extends AbstractFormEntity {
 	
 	public Tool() {
 		super();
-	}
-
-	public Team getTeam() {
-		return team;
-	}
-	
-	public void setTeam(Team team) {
-		this.team = team;
-	}
-	
-	public Collection<Action> getActions() {
-		return actions;
-	}
-	
-	public void setActions(Collection<Action> actions) {
-		this.actions = actions;
 	}
 }

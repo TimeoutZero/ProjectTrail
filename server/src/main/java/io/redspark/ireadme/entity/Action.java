@@ -9,10 +9,12 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import org.hibernate.envers.Audited;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
-@Audited
+@Getter
+@Setter
 @Table(name = "action")
 public class Action extends AbstractFormEntity {
 
@@ -22,19 +24,4 @@ public class Action extends AbstractFormEntity {
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "action")
 	private List<Step> steps = new ArrayList<>();
 	
-	public Tool getTool() {
-		return tool;
-	}
-	
-	public void setTool(Tool tool) {
-		this.tool = tool;
-	}
-	
-	public List<Step> getSteps() {
-		return steps;
-	}
-	
-	public void setSteps(List<Step> steps) {
-		this.steps = steps;
-	}
 }

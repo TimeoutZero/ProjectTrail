@@ -4,32 +4,16 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import org.hibernate.envers.Audited;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
-@Audited
+@Getter @Setter
 @Table(name = "step")
 public class Step extends AbstractFormEntity{
 
 	@ManyToOne
 	private Action action;
-	
 	private Integer index;
-	
-	public Integer getIndex() {
-		return index;
-	}
-	
-	public void setIndex(Integer index) {
-		this.index = index;
-	}
-	
-	public void setAction(Action action) {
-		this.action = action;
-	}
-	
-	public Action getAction() {
-		return action;
-	}
 	
 }

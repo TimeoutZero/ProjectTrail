@@ -8,6 +8,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.TestRestTemplate;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.TransactionCallbackWithoutResult;
 import org.springframework.transaction.support.TransactionTemplate;
@@ -22,12 +25,18 @@ public class JpaPersistenceProvider implements PersistenceProvider {
 
 	@PersistenceContext
 	private EntityManager em;
+	
+	@Autowired
+	private JdbcTemplate template;
 
 	@Autowired
-	private TransactionTemplate template;
+	private PlatformTransactionManager transactionManager;
 
 	@Override
 	public void save(final List<AbstractBuilder<?>> builders) {
+		
+		TransactionTemplate template = new TransactionTemplate(transactionManager);
+
 		template.execute(new TransactionCallbackWithoutResult() {
 			@Override
 			protected void doInTransactionWithoutResult(TransactionStatus arg0) {
@@ -53,22 +62,13 @@ public class JpaPersistenceProvider implements PersistenceProvider {
 		this.nativeQuery.add(query);
 		return this;
 	}
+	protected TestRestTemplate template() {
+		return new TestRestTemplate();
+	}
 
 	@Override
 	public void clear() {
 
-		template.execute(new TransactionCallbackWithoutResult() {
-			@Override
-			protected void doInTransactionWithoutResult(TransactionStatus status) {
-				for (String c : commands) {
-					if (nativeQuery.contains(c)) {
-						em.createNativeQuery(c).executeUpdate();
-					} else {
-						em.createQuery(c).executeUpdate();
-					}
-				}
-			}
-		});
-
+		//this.template.execute("TRUNCATE SCHEMA public AND COMMIT");
 	}
 }

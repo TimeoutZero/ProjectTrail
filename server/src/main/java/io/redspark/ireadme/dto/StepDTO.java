@@ -1,7 +1,10 @@
 package io.redspark.ireadme.dto;
 
 import io.redspark.ireadme.entity.Step;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter @Setter
 public class StepDTO extends AbstractDTO {
 
 	private Integer index;
@@ -13,7 +16,4 @@ public class StepDTO extends AbstractDTO {
 		this.index 		 = step.getIndex();
 	}
 	
-	public Integer getIndex() {
-		return index;
-	}
 }

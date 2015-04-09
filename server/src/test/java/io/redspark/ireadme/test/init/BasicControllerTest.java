@@ -1,25 +1,22 @@
 package io.redspark.ireadme.test.init;
 
-import static io.redspark.ireadme.init.AppProfile.TEST;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import io.redspark.ireadme.init.AppConfig;
-import io.redspark.ireadme.init.AppWebConfig;
+import io.redspark.ireadme.IRApplication;
 
 import java.io.UnsupportedEncodingException;
 
 import javax.annotation.Resource;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.junit.Before;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.IntegrationTest;
+import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.mock.web.MockHttpSession;
 import org.springframework.security.web.FilterChainProxy;
-import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
@@ -27,6 +24,7 @@ import org.springframework.test.web.servlet.ResultMatcher;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.TransactionCallbackWithoutResult;
 import org.springframework.transaction.support.TransactionTemplate;
@@ -37,11 +35,10 @@ import aleph.TestPersistentContext;
 import com.jayway.jsonassert.JsonAssert;
 import com.jayway.jsonassert.JsonAsserter;
 
-@WebAppConfiguration
-@ActiveProfiles(TEST)
 @RunWith(SpringJUnit4ClassRunner.class)
-@TransactionConfiguration(defaultRollback = true)
-@ContextConfiguration(classes = { AppConfig.class, AppWebConfig.class, AppTestProvider.class })
+@SpringApplicationConfiguration(classes = { IRApplication.class })
+@WebAppConfiguration
+@IntegrationTest("server.port=10001")
 public abstract class BasicControllerTest {
 
 	protected MockMvc mock;
@@ -53,17 +50,13 @@ public abstract class BasicControllerTest {
     private FilterChainProxy springSecurityFilterChain;
 	
 	@Autowired
-	private TransactionTemplate transactionManager;
+	private PlatformTransactionManager transactionManager;
 	
-	@Autowired
-	private JpaPersistenceProvider jpaPersistenceProvider;
-
 	private MockHttpSession session;
 
 	@Before
 	public void setupConfiguration() {
 
-		jpaPersistenceProvider.clear();
 		
 		mock = MockMvcBuilders
 				.webAppContextSetup(context)
@@ -71,6 +64,8 @@ public abstract class BasicControllerTest {
 				.addFilters(this.springSecurityFilterChain)
 				.build();
 	}
+	
+	
 
 	public BasicControllerTest signIn() throws Exception {
 
@@ -84,7 +79,9 @@ public abstract class BasicControllerTest {
 	}
 	
 	protected void saveAll() {
-		transactionManager.execute(new TransactionCallbackWithoutResult() {
+		 
+		TransactionTemplate template = new TransactionTemplate(transactionManager);
+		template.execute(new TransactionCallbackWithoutResult() {
 			@Override
 			protected void doInTransactionWithoutResult(TransactionStatus status) {
 				TestPersistentContext.get().saveAll();

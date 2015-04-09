@@ -11,11 +11,13 @@ import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-import org.hibernate.envers.Audited;
+import lombok.Getter;
+import lombok.Setter;
+
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Entity
-@Audited
+@Getter @Setter
 @Table(name = "user")
 public class User extends AbstractEntity {
 	
@@ -47,42 +49,6 @@ public class User extends AbstractEntity {
 		this.email 	  = email;
 		this.password = new BCryptPasswordEncoder().encode(password);
 		this.roles.add(ROLE_USER);
-	}
-	
-	public String getEmail() {
-		return email;
-	}
-	
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	
-	public String getPassword() {
-		return password;
-	}
-	
-	public void setPassword(String password) {
-		this.password = password;
-	}
-	
-	public void setNickname(String nickname) {
-		this.nickname = nickname;
-	}
-	
-	public String getNickname() {
-		return nickname;
-	}
-	
-	public Collection<String> getRoles() {
-		return roles;
-	}
-	
-	public void setRoles(Collection<String> roles) {
-		this.roles = roles;
-	}
-	
-	public Collection<Team> getTeams() {
-		return teams;
 	}
 	
 }

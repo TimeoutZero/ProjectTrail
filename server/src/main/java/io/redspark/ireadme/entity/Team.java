@@ -8,10 +8,11 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import org.hibernate.envers.Audited;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
-@Audited
+@Getter @Setter
 @Table(name = "team")
 public class Team extends AbstractFormEntity{
 
@@ -24,20 +25,8 @@ public class Team extends AbstractFormEntity{
 	public Team() { 
 		super();
 	}
-
+	
 	public Team(String name) {
 		this.name = name;
-	}
-
-	public Collection<User> getUsers() {
-		return users;
-	}
-
-	public void setUsers(Collection<User> users) {
-		this.users = users;
-	}
-	
-	public Collection<Tool> getTools() {
-		return tools;
 	}
 }
