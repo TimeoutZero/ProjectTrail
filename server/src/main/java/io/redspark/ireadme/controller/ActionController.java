@@ -67,6 +67,7 @@ public class ActionController {
 		return new ActionDTO(action);
 	}
  
+	@ApiMethod
 	@ResponseStatus(CREATED)
 	@RequestMapping(method = POST)
 	public ActionDTO create(
@@ -106,6 +107,7 @@ public class ActionController {
 		return new ActionDTO(action);
 	}
 	
+	@ApiMethod
 	@RequestMapping(value = "/{id}", method = DELETE)
 	public ActionDTO delete(
 			@PathVariable("teamId") Long teamId, 

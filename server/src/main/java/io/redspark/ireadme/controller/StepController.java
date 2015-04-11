@@ -53,6 +53,7 @@ public class StepController {
 				.collect(Collectors.toList());
 	}
 	
+	@ApiMethod
 	@RequestMapping(value = "/{id}", method = GET)
 	public StepDTO get(
 			@PathVariable("teamId") Long teamId,

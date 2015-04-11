@@ -11,6 +11,7 @@ import io.redspark.ireadme.service.IReadmeRepository;
 import javax.validation.Valid;
 
 import org.jsondoc.core.annotation.Api;
+import org.jsondoc.core.annotation.ApiMethod;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,7 @@ public class UserController {
 	@Autowired
 	private IReadmeRepository ireadme;
 	
+	@ApiMethod
 	@RequestMapping(method = POST)
 	@ResponseStatus(HttpStatus.CREATED) 
 	public UserDTO save(@Valid UserForm form) {
