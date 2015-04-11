@@ -18,6 +18,8 @@ import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
+import org.jsondoc.core.annotation.Api;
+import org.jsondoc.core.annotation.ApiMethod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -29,11 +31,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/team")
+@Api(name = "Team", description = "")
 public class TeamController {
 
 	@Autowired
 	private IReadmeService service;
 	
+	@ApiMethod
 	@Transactional(readOnly = true)
 	@RequestMapping(value = "/{id}", method = GET)
 	public TeamDTO get(@PathVariable("id") Long id) {
@@ -43,6 +47,7 @@ public class TeamController {
 		return new TeamDTO(team);
 	}
 	
+	@ApiMethod(description = "List current teams of user.")
 	@Transactional(readOnly = true)
 	@RequestMapping(value = "/me" , method = GET)
 	public Collection<TeamDTO> list() {
@@ -55,6 +60,7 @@ public class TeamController {
 					.collect(Collectors.toList());
 	}
 	
+	@ApiMethod
 	@ResponseStatus(CREATED)
 	@RequestMapping(method = POST)
 	public TeamDTO create(@Valid @ModelAttribute GenericForm form){
@@ -67,6 +73,7 @@ public class TeamController {
 		return new TeamDTO(team);
 	}
 	
+	@ApiMethod
 	@Transactional(readOnly = true)
 	@RequestMapping(value = "/{id}", method = PUT)
 	public TeamDTO update(@PathVariable("id") Long id, @ModelAttribute GenericForm form) {
@@ -80,6 +87,7 @@ public class TeamController {
 		return new TeamDTO(team);
 	}
 	
+	@ApiMethod
 	@Transactional(readOnly = true)
 	@RequestMapping(value = "/{id}/member", method = PUT)
 	public TeamDTO addMember(@PathVariable("id") Long id, @RequestParam("userId") Long userId) {
@@ -93,6 +101,7 @@ public class TeamController {
 		return new TeamDTO(team);
 	}
 	
+	@ApiMethod
 	@Transactional
 	@RequestMapping(value = "/{id}", method = DELETE)
 	public TeamDTO delete(@PathVariable("id") Long id) {

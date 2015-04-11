@@ -15,6 +15,8 @@ import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
+import org.jsondoc.core.annotation.Api;
+import org.jsondoc.core.annotation.ApiMethod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,11 +28,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/team/{teamId}/tool/{toolId}/action/{actionId}/step")
+@Api(name = "Step", description = "")
 public class StepController {
 
 	@Autowired
 	private IReadmeService service;
 	
+	@ApiMethod
 	@Transactional(readOnly = true)
 	@RequestMapping(method = GET)
 	public List<StepDTO> list(
@@ -66,6 +70,7 @@ public class StepController {
 		return new StepDTO(step);
 	}
 	
+	@ApiMethod
 	@ResponseStatus(HttpStatus.CREATED)
 	@RequestMapping(method = POST)
 	public StepDTO create(
@@ -90,6 +95,7 @@ public class StepController {
 		return new StepDTO(step);
 	}
 	
+	@ApiMethod
 	@RequestMapping(value = "/{id}", method = PUT)
 	public StepDTO update(
 			@PathVariable("teamId") Long teamId,
@@ -112,6 +118,7 @@ public class StepController {
 		return new StepDTO(step);
 	}
 	
+	@ApiMethod
 	@RequestMapping(value = "/{id}", method = DELETE)
 	public StepDTO delete(
 			@PathVariable("teamId") Long teamId,

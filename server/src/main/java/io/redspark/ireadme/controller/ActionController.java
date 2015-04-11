@@ -18,6 +18,8 @@ import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
+import org.jsondoc.core.annotation.Api;
+import org.jsondoc.core.annotation.ApiMethod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -28,11 +30,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/team/{teamId}/tool/{toolId}/action")
+@Api(name = "Action", description = "")
 public class ActionController {
 
 	@Autowired 
 	private IReadmeService service;
 
+	@ApiMethod
 	@Transactional(readOnly = true)
 	@RequestMapping(method = GET)
 	public Collection<ToolDTO> list(
@@ -48,6 +52,7 @@ public class ActionController {
 				.collect(Collectors.toList());
 	}
 	
+	@ApiMethod
 	@RequestMapping(value = "/{id}", method = GET)
 	public ActionDTO get(
 			@PathVariable("teamId") Long teamId,
@@ -79,6 +84,7 @@ public class ActionController {
 		return new ActionDTO(action);
 	}
 
+	@ApiMethod
 	@RequestMapping(value = "/{id}", method = PUT)
 	public ActionDTO update(
 			@PathVariable("teamId") Long teamId, 

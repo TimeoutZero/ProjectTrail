@@ -10,6 +10,7 @@ import io.redspark.ireadme.service.IReadmeRepository;
 
 import javax.validation.Valid;
 
+import org.jsondoc.core.annotation.Api;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/user")
+@Api(name = "User", description = "")
 public class UserController {
  
 	private Logger log = LoggerFactory.getLogger(UserController.class);
