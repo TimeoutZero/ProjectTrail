@@ -19,7 +19,9 @@ import java.util.stream.Collectors;
 import javax.validation.Valid;
 
 import org.jsondoc.core.annotation.Api;
+import org.jsondoc.core.annotation.ApiBodyObject;
 import org.jsondoc.core.annotation.ApiMethod;
+import org.jsondoc.core.annotation.ApiPathParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -40,7 +42,7 @@ public class TeamController {
 	@ApiMethod
 	@Transactional(readOnly = true)
 	@RequestMapping(value = "/{id}", method = GET)
-	public TeamDTO get(@PathVariable("id") Long id) {
+	public TeamDTO get(@ApiPathParam @PathVariable("id") Long id) {
 		
 		Team team = service.getTeamService().findTeamById(id);
 		
@@ -63,7 +65,7 @@ public class TeamController {
 	@ApiMethod
 	@ResponseStatus(CREATED)
 	@RequestMapping(method = POST)
-	public TeamDTO create(@Valid @ModelAttribute GenericForm form){
+	public TeamDTO create(@ApiBodyObject @Valid @ModelAttribute GenericForm form){
 		
 		Team team = form.toTeamEntity();
 		team.getUsers().add(IReadmeSecurityContext.getLoggedUser());

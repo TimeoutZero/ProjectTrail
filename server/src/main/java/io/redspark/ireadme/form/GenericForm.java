@@ -5,15 +5,22 @@ import io.redspark.ireadme.entity.Team;
 import io.redspark.ireadme.entity.Tool;
 
 import org.hibernate.validator.constraints.NotBlank;
+import org.jsondoc.core.annotation.ApiObject;
+import org.jsondoc.core.annotation.ApiObjectField;
 
+@ApiObject
 public class GenericForm {
 
 	private static final String TEAM_INVALID_BLANK_NAME = "team.invalid.blank.name";
 	
+    @ApiObjectField
 	@NotBlank(message = TEAM_INVALID_BLANK_NAME)
 	private String name;
 	
+    @ApiObjectField
 	private String image;
+    
+    @ApiObjectField
 	private String description;
 	
 	public String getName() {

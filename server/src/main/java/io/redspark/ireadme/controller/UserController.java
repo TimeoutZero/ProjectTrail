@@ -12,6 +12,7 @@ import javax.validation.Valid;
 
 import org.jsondoc.core.annotation.Api;
 import org.jsondoc.core.annotation.ApiMethod;
+import org.jsondoc.core.annotation.ApiResponseObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +34,7 @@ public class UserController {
 	@ApiMethod
 	@RequestMapping(method = POST)
 	@ResponseStatus(HttpStatus.CREATED) 
-	public UserDTO save(@Valid UserForm form) {
+	public @ApiResponseObject UserDTO save(@Valid UserForm form) {
 		
 		String email = form.getEmail();
 		log.info("Trying to find user with email: {}", email);

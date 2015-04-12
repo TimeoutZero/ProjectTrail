@@ -2,9 +2,16 @@ package io.redspark.ireadme.form;
 
 import io.redspark.ireadme.entity.User;
 
+import org.jsondoc.core.annotation.ApiObject;
+import org.jsondoc.core.annotation.ApiObjectField;
+
+@ApiObject
 public class UserForm {
 
+    @ApiObjectField
 	private String email;
+
+    @ApiObjectField
 	private String password;
 	
 	public String getEmail() {
