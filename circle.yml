@@ -1,9 +1,9 @@
 ---
 machine:
   java:
-    version: oraclejdk8 
+    version: oraclejdk8
 
 test:
-  override: 
+  override:
     - cd server; mvn clean package; cd ..;
-    - mv server/target/ireadme.war $CIRCLE_ARTIFACTS/ireadme.war
+    - mv server/target/ireadme.jar $CIRCLE_ARTIFACTS/ireadme.jar
