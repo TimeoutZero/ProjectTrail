@@ -14,6 +14,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.IntegrationTest;
 import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.mock.web.MockHttpSession;
 import org.springframework.security.web.FilterChainProxy;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -52,10 +53,16 @@ public abstract class BasicControllerTest {
 	@Autowired
 	private PlatformTransactionManager transactionManager;
 	
+	@Autowired
+	private JdbcTemplate template;
+	
 	private MockHttpSession session;
+	
 
 	@Before
 	public void setupConfiguration() {
+		
+		template.execute("TRUNCATE SCHEMA public AND COMMIT");
 
 		
 		mock = MockMvcBuilders
@@ -65,11 +72,9 @@ public abstract class BasicControllerTest {
 				.build();
 	}
 	
-	
-
 	public BasicControllerTest signIn() throws Exception {
 
-		MockHttpServletRequestBuilder post = MockMvcRequestBuilders.post("/api/login");
+		MockHttpServletRequestBuilder post = MockMvcRequestBuilders.post("/login");
 		post.param("username", "lucas.gmmartins@gmail.com");
 		post.param("password", "12345");
 
