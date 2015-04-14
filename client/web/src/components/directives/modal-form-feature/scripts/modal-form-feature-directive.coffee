@@ -36,7 +36,7 @@ angular.module 'ProjectTrailApp.directives'
             <label for="description">Description</label>
             <input
               ng-model="feature.description"
-              tabindex="1"
+              tabindex="0"
               id="description"
               aria-invalid="false">
           </md-input-container>
@@ -44,8 +44,8 @@ angular.module 'ProjectTrailApp.directives'
           <md-input-container flex="" class="md-default-theme">
             <label for="img-url">Image URL</label>
             <input
-              ng-model="feature.img"
-              tabindex="2"
+              ng-model="feature.image"
+              tabindex="0"
               id="img-url"
               aria-invalid="false">
           </md-input-container>
@@ -53,11 +53,11 @@ angular.module 'ProjectTrailApp.directives'
         </md-content>
 
         <div style="display: block; clear: both;">
-         <md-button class="md-default" ng-click="hideModal(false)">
+         <md-button class="md-default" ng-click="hideModal(false)" tabindex="1">
             Cancel
           </md-button>
 
-          <md-button class="md-primary" ng-click="hideModal(true)">
+          <md-button class="md-primary" ng-click="hideModal(true)" tabindex="2">
             Save
           </md-button>
         </div>
