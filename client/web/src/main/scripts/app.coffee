@@ -76,12 +76,15 @@ angular.module('ProjectTrailApp', [
   # =============================================
   .config( ['$httpProvider', 'markdownConverterProvider', ($httpProvider, markdownConverterProvider) ->
 
-    # Customize $httpProvider
-    # =============================================
-    # $httpProvider.defaults.transformRequest  = (data) -> if data then $.param(data) else data
     # $httpProvider.defaults.headers.post      = "Content-Type": 'application/json'
 
     markdownConverterProvider.config({ extensions: ['github'] })
+
+    # Customize $httpProvider
+    # =============================================
+    $httpProvider.defaults.transformRequest  = (data) -> if data then $.param(data) else data
+    $httpProvider.defaults.headers.post = "Content-type": "application/x-www-form-urlencoded"
+    $httpProvider.defaults.headers.put  = "Content-type": "application/x-www-form-urlencoded"
 
   ])
 
