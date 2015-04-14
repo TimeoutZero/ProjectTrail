@@ -43,7 +43,6 @@ describe 'Directive: MainBar', () ->
     iit 'When the $state changes', ->
 
         inject ($timeout) ->
-          console.log 'a'
           spyOn(isolateScope, 'changeSelectedItem').andCallThrough()
 
           $state.current =
