@@ -7,7 +7,7 @@
 angular.module 'ProjectTrailApp.controllers'
 
   # =============================================
-  # ToolController
+  # TeamService
   # =============================================
   .service 'TeamService', [ 'APP_BASE_URL', '$http'
     (APP_BASE_URL, $http) ->
@@ -29,10 +29,16 @@ angular.module 'ProjectTrailApp.controllers'
           method        : 'GET'
           data          : data
 
-      edit: (data) ->
+      update: (data) ->
         $http
           url           : APP_BASE_URL + "team/#{data.id}"
           method        : 'PUT'
           data          : data
+
+      delete: (data) ->
+        $http
+          url           : APP_BASE_URL + "team/#{data.id}"
+          method        : 'DELETE'
+
 
   ]
