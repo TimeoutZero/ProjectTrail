@@ -5,14 +5,23 @@ machine:
   services:
   - docker
 
+dependencies:
+  override:
+    - npm install -g bower
+    - npm install -g gulp
+
 test:
   override:
 
     - docker login -e="lucas.gmmartins@gmail.com.br" -u="lucasgmartins" -p="futebol025"
 
-    # BUILD APP
+    # BUILD BACK
 
     - cd server; mvn clean package; cd ..;
+
+    # BUILD FRONT
+
+    - cd client; npm install; gulp build; cd ..;
 
     # BUILD DOCKER CONTAINER
     - docker build -t ireadme/core server

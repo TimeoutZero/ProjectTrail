@@ -30,4 +30,4 @@ core:
     - "8080:8080"
   links:
     - mysql
-  command: java -jar /app/ireadme.jar
+  command: java -jar /app/ireadme.jar -Dspring.profiles.active=docker
