@@ -28,7 +28,7 @@ angular.module 'ProjectTrailApp.directives'
           float             : 'left'
 
         $scope.getItemImage = (item) ->
-          return item.img or $scope.defaultImgUrl
+          return item.image or $scope.defaultImgUrl
 
         $scope.clickItemCallback = (item) ->
           _.isFunction($scope.onClickItem) and $scope.onClickItem(item)
@@ -55,9 +55,13 @@ angular.module 'ProjectTrailApp.directives'
                   </div>
                 </div>
 
-                <div class="action-buttons-container">
-                  <button class="btn btn-primary" ng-click="clickEditButton(item)">Edit</button>
-                  <button class="btn btn-danger" ng-click="clickDeleteButton(item)">Delete</button>
+                <div class="action-buttons-container btn-group-vertical">
+                  <button class="btn btn-primary" ng-click="clickEditButton(item)" title="Edit">
+                    <span class="glyphicon glyphicon-pencil"></span>
+                  </button>
+                  <button class="btn btn-danger" ng-click="clickDeleteButton(item)" title="Delete">
+                    <span class="glyphicon glyphicon-remove"></span>
+                  </button>
                 </div>
               </div>
             </li>
