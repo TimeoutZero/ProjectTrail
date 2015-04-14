@@ -14,12 +14,23 @@ angular.module 'ProjectTrailApp.controllers'
       # =============================================
       # Attributes
       # =============================================
-      $scope.team = {}
+      $scope.team       = {}
+      $scope.modalScope = null
 
       # =============================================
       # Methods
       # =============================================
 
+      $scope.processSuccessModalResult = (saved) ->
+        if saved
+          team = _.omit($scope.modalScope.team, ['users', '$$hashKey'])
+
+          if team.id
+            promise = TeamService.update(team)
+          else
+            promise = TeamService.create(team)
+
+          promise.success -> $scope.$emit 'updateTeamList'
 
       # =============================================
       # Aux Methods
@@ -30,13 +41,15 @@ angular.module 'ProjectTrailApp.controllers'
       # =============================================
       # Initialize
       # =============================================
-      $scope.$on 'openFormDialog', ->
-        promise = $mdDialog.show
-          templateUrl : 'views/features/team/views/form-team-view.html'
-          scope       : $scope
+      $scope.$on 'openFormDialog', (eventObj, currentTeam) ->
+        $scope.team        = currentTeam or {}
+        $scope.modalScope  = $rootScope.$new()
 
-        promise.then (saved) ->
-          if saved then TeamService.create($scope.team)
+        $mdDialog.show(
+          templateUrl   : 'views/features/team/views/form-team-view.html'
+          scope         : $scope.modalScope
+        ).then($scope.processSuccessModalResult)
+
 
       return @
 

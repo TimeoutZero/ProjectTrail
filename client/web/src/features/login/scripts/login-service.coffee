@@ -16,7 +16,7 @@ angular.module 'ProjectTrailApp.services'
         $http
           url         : APP_BASE_URL + 'login'
           method      : 'POST'
-          data        : $.param(data)
+          data        : data
           headers     :
             "Content-type": "application/x-www-form-urlencoded"
 

@@ -14,7 +14,7 @@ angular.module 'ProjectTrailApp.controllers'
       # =============================================
       # Attributes
       # =============================================
-      # $scope.teams       = $rootScope.teams
+      $scope.teams       = []
       $scope.currentTeam = null
 
       # =============================================
@@ -24,6 +24,7 @@ angular.module 'ProjectTrailApp.controllers'
         $state.go 'tool.list', id : item.id
 
       $scope.openFormDialog = (item) ->
+        $scope.currentTeam = item
         $scope.$broadcast 'openFormDialog', $scope.currentTeam
 
       $scope.showDeleteDialog = (item) ->
@@ -34,10 +35,10 @@ angular.module 'ProjectTrailApp.controllers'
           .ok('Yes, delete!')
           .cancel('no')
 
-        $mdDialog.show(confirm).then($scope.deleteItem)
+        $mdDialog.show(confirm).then( -> $scope.deleteItem(item) )
 
-      $scope.deleteItem = ->
-        promise = $scope.deleteItem()
+      $scope.deleteItem = (item) ->
+        promise = TeamService.delete(item)
         promise.success -> $mdToast.show( $mdToast.simple()
           .content('Item Deletado')
           .position(
@@ -45,7 +46,16 @@ angular.module 'ProjectTrailApp.controllers'
             top    : no
             left   : no
             right  : no
-          )).hideDelay(3000)
+          ))
+
+      $scope.getTeams = ->
+        promise = TeamService.list()
+        promise.success (data) -> $scope.teams = data
+        promise.error (errorData) -> alert errorData
+        return promise
+
+      $scope.initialize = ->
+        $scope.getTeams()
 
 
       # =============================================
@@ -54,11 +64,15 @@ angular.module 'ProjectTrailApp.controllers'
 
 
       # =============================================
+      # Events
+      # =============================================
+      $scope.$on 'updateTeamList', $scope.getTeams
+
+
+      # =============================================
       # Initialize
       # =============================================
-      promise = TeamService.list()
-      promise.success (data) ->
-        $scope.teams = data
+      $scope.initialize()
 
       return @
 
