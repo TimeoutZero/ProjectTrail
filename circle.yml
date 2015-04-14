@@ -19,15 +19,15 @@ test:
 
     - cd server; mvn clean package; cd ..;
 
-     # BUILD DOCKER CONTAINER
+    # BUILD FRONT
+
+    - cd client/web; npm install; bower install; gulp release; cd ../../;
+
+    # BUILD BACK CONTAINER
     - docker build -t ireadme/core server
     - docker push ireadme/core
 
-    # BUILD FRONT
-
-    - cd client/web; npm install; gulp build; cd ../../;
-
-    # BUILD DOCKER CONTAINER
+    # BUILD FRONT CONTAINER
     - docker build -t ireadme/web web
     - docker push ireadme/web
 
