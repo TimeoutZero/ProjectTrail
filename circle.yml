@@ -2,8 +2,21 @@
 machine:
   java:
     version: oraclejdk8
+  services:
+  - docker
 
 test:
   override:
+
+    - docker login -e="lucas.gmmartins@gmail.com.br" -u="lucasgmartins" -p="futebol025"
+
+    # BUILD APP
+
     - cd server; mvn clean package; cd ..;
+
+    # BUILD DOCKER CONTAINER
+    - docker build -t ireadme/core server
+    - docker push ireadme/core
+
+    # BACKUP
     - mv server/target/ireadme.jar $CIRCLE_ARTIFACTS/ireadme.jar

@@ -63,7 +63,6 @@ public abstract class BasicControllerTest {
 	public void setupConfiguration() {
 		
 		template.execute("TRUNCATE SCHEMA public AND COMMIT");
-
 		
 		mock = MockMvcBuilders
 				.webAppContextSetup(context)
