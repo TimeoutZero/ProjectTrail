@@ -21,7 +21,7 @@ test:
 
     # BUILD FRONT
 
-    - cd client; npm install; gulp build; cd ..;
+    - cd client/web; npm install; gulp build; cd ../../;
 
     # BUILD DOCKER CONTAINER
     - docker build -t ireadme/core server
