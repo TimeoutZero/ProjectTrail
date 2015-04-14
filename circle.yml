@@ -19,13 +19,17 @@ test:
 
     - cd server; mvn clean package; cd ..;
 
+     # BUILD DOCKER CONTAINER
+    - docker build -t ireadme/core server
+    - docker push ireadme/core
+
     # BUILD FRONT
 
     - cd client/web; npm install; gulp build; cd ../../;
 
     # BUILD DOCKER CONTAINER
-    - docker build -t ireadme/core server
-    - docker push ireadme/core
+    - docker build -t ireadme/web web
+    - docker push ireadme/web
 
     # BACKUP
     - mv server/target/ireadme.jar $CIRCLE_ARTIFACTS/ireadme.jar
