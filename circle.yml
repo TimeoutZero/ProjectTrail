@@ -28,7 +28,7 @@ test:
     - docker push ireadme/core
 
     # BUILD FRONT CONTAINER
-    - docker build -t ireadme/web web
+    - docker build -t ireadme/web client/web
     - docker push ireadme/web
 
     # BACKUP
