@@ -86,7 +86,7 @@ public class TeamController {
 		team.setImage(form.getImage());
 		team.setDescription(form.getDescription());
 		
-		service.getTeamService().getRepository().save(team);
+		team = service.getTeamService().getRepository().save(team);
 		
 		return new TeamDTO(team);
 	}

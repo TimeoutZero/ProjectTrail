@@ -34,6 +34,7 @@ public class IRSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder builder) throws Exception{
+		
 		builder
 			.userDetailsService(customUserDetailsService)
 			.passwordEncoder(new BCryptPasswordEncoder());
