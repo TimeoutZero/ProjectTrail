@@ -42,8 +42,9 @@ angular.module 'ProjectTrailApp.controllers'
       # Initialize
       # =============================================
       $scope.$on 'openFormDialog', (eventObj, currentTeam) ->
-        $scope.team        = currentTeam or {}
-        $scope.modalScope  = $rootScope.$new()
+        $scope.team            = currentTeam or {}
+        $scope.modalScope      = $rootScope.$new()
+        $scope.modalScope.team = angular.copy($scope.team)
 
         $mdDialog.show(
           templateUrl   : 'views/features/team/views/form-team-view.html'
