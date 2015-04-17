@@ -76,7 +76,7 @@ public class TeamController {
 	}
 	
 	@ApiMethod
-	@Transactional(readOnly = true)
+	@Transactional
 	@RequestMapping(value = "/{id}", method = PUT)
 	public TeamDTO update(@PathVariable("id") Long id, @ModelAttribute GenericForm form) {
 		
@@ -92,7 +92,7 @@ public class TeamController {
 	}
 	
 	@ApiMethod
-	@Transactional(readOnly = true)
+	@Transactional
 	@RequestMapping(value = "/{id}/member", method = PUT)
 	public TeamDTO addMember(@PathVariable("id") Long id, @RequestParam("userId") Long userId) {
 		
