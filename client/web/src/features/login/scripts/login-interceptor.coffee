@@ -27,9 +27,8 @@ angular.module 'ProjectTrailApp'
       'responseError': (rejection)->
         if rejection.status is 401
           $injector.invoke ['$state', '$rootScope', ($state, $rootScope) ->
-            if $state.current.data.restrict
-              $rootScope.user = null
-              $state.go 'login'
+            $rootScope.user = null
+            $state.go 'login'
           ]
 
         return  $q.reject rejection
