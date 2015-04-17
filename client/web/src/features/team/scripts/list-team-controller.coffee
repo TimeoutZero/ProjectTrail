@@ -40,7 +40,7 @@ angular.module 'ProjectTrailApp.controllers'
       $scope.deleteItem = (item) ->
         promise = TeamService.delete(item)
         promise.success -> $mdToast.show( $mdToast.simple()
-          .content('Item Deletado')
+          .content('Deleted')
           .position(
             bottom : yes
             top    : no
