@@ -100,7 +100,7 @@ public class TeamController {
 		User user = service.getUserService().findUserById(userId);
 		
 		team.getUsers().add(user);
-		service.getTeamService().getRepository().save(team);
+		team = service.getTeamService().getRepository().save(team);
 		
 		return new TeamDTO(team);
 	}
