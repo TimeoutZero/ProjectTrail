@@ -7,12 +7,13 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import lombok.Getter;
-import lombok.Setter;
 
-@Getter @Setter
 public class TeamDTO extends AbstractDTO {
 
+	@Getter
 	private Long id;
+	
+	@Getter
 	private Collection<UserDTO> users = new ArrayList<>();
 	
 	public TeamDTO() {

@@ -40,7 +40,7 @@ public class TeamController {
 	private IReadmeService service;
 	
 	@ApiMethod
-	@Transactional(readOnly = true)
+	@Transactional
 	@RequestMapping(value = "/{id}", method = GET)
 	public TeamDTO get(@ApiPathParam @PathVariable("id") Long id) {
 		
@@ -49,8 +49,8 @@ public class TeamController {
 		return new TeamDTO(team);
 	}
 	
+	@Transactional
 	@ApiMethod(description = "List current teams of user.")
-	@Transactional(readOnly = true)
 	@RequestMapping(value = "/me" , method = GET)
 	public Collection<TeamDTO> list() {
 	
@@ -78,7 +78,7 @@ public class TeamController {
 	@ApiMethod
 	@Transactional
 	@RequestMapping(value = "/{id}", method = PUT)
-	public TeamDTO update(@PathVariable("id") Long id, @ModelAttribute GenericForm form) {
+	public TeamDTO update(@PathVariable("id") Long id, @Valid @ModelAttribute GenericForm form) {
 		
 		Team team = service.getTeamService().findTeamById(id);
 		
@@ -117,5 +117,4 @@ public class TeamController {
 		
 		return new TeamDTO(team);
 	}
-	
 }
