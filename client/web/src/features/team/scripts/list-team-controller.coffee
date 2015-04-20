@@ -31,7 +31,7 @@ angular.module 'ProjectTrailApp.controllers'
         confirm = $mdDialog.confirm()
           .title('Confirm')
           .content('Are you sure about delete this item?')
-          .ariaLabel('Lucky day')
+          .ariaLabel('Teams')
           .ok('Yes, delete!')
           .cancel('no')
 
@@ -39,19 +39,14 @@ angular.module 'ProjectTrailApp.controllers'
 
       $scope.deleteItem = (item) ->
         promise = TeamService.delete(item)
-        promise.success -> $mdToast.show( $mdToast.simple()
-          .content('Deleted')
-          .position(
-            bottom : yes
-            top    : no
-            left   : no
-            right  : no
-          ))
+        promise.success ->
+          $mdToast.show( $mdToast.simple().content('Deleted') )
+          $scope.getTeams()
 
       $scope.getTeams = ->
         promise = TeamService.list()
         promise.success (data) -> $scope.teams = data
-        promise.error (errorData) -> alert errorData
+        promise.error (errorData) ->
         return promise
 
       $scope.initialize = ->

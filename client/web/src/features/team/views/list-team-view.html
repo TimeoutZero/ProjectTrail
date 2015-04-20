@@ -2,7 +2,7 @@
 
   <!-- Barra Principal -->
   <!-- <header main-bar has-menu="true"></header> -->
-  <md-button class="md-fab md-primary md-hue-2" aria-label="Create new team" ng-click="openFormDialog()">
+  <md-button class="md-fab md-primary md-hue-2 add-feature-button" aria-label="Create new team" ng-click="openFormDialog()">
     <span class="glyphicon glyphicon-plus"></span>
   </md-button>
 
@@ -18,7 +18,7 @@
       on-click-item="onClickItem"
       on-click-settings="showSettings"
       on-click-edit-button="openFormDialog"
-      on-click-delete-button="deleteItem"></div>
-    <div id="team-form-view-container" ui-view="form-view"></div>
+      on-click-delete-button="showDeleteDialog"></div>
+    <div ui-view="form-view"></div>
   </div>
 </div>
