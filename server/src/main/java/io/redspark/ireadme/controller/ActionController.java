@@ -28,6 +28,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+@Transactional
 @RestController
 @RequestMapping("/team/{teamId}/tool/{toolId}/action")
 @Api(name = "Action", description = "")
@@ -37,7 +38,6 @@ public class ActionController {
 	private IReadmeService service;
 
 	@ApiMethod
-	@Transactional(readOnly = true)
 	@RequestMapping(method = GET)
 	public Collection<ToolDTO> list(
 		@PathVariable("teamId") Long teamId,
