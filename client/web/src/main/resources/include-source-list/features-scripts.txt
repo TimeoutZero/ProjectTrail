@@ -21,6 +21,7 @@ scripts/features/action/scripts/action-routes.js
 scripts/features/action/scripts/action-controller.js
 scripts/features/action/scripts/list-action-controller.js
 scripts/features/action/scripts/form-action-controller.js
+scripts/features/action/scripts/action-service.js
 
 scripts/features/step/scripts/step-routes.js
 scripts/features/step/scripts/step-controller.js

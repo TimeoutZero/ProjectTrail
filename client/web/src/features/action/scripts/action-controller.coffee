@@ -6,7 +6,7 @@
 angular.module 'ProjectTrailApp.controllers'
 
   # =============================================
-  # ActionController
+  # ToolController
   # =============================================
   .controller 'ActionController', [
     () ->

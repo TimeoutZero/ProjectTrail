@@ -15,11 +15,11 @@ angular.module 'ProjectTrailApp'
     $stateProvider
 
 
-      # Action
+      # Tool
       # ==============================
       .state('action'
         url         : '/action'
-        templateUrl : 'views/features/action/views/action-view.html'
+        templateUrl : 'views/features/tool/views/tool-view.html'
         controller  : 'ActionController'
         abstract    : yes
         data        :
@@ -27,34 +27,16 @@ angular.module 'ProjectTrailApp'
       )
 
 
-      # List
+      # List - Form
       # ==============================
       .state('action.list'
         url         : '/:teamId/:toolId/list'
-        templateUrl : 'views/features/action/views/list-action-view.html'
-        controller  : 'ListActionController'
-        data        :
-          restrict  : no
-      )
-
-
-      # action
-      # ==============================
-      .state('action.create'
-        url         : '/create'
-        templateUrl : 'views/features/action/views/form-action.html'
-        controller  : 'FormActionController'
-        data        :
-          restrict  : no
-      )
-
-
-      # action
-      # ==============================
-      .state('action.edit'
-        url         : '/edit/:id'
-        templateUrl : 'views/features/action/views/form-action.html'
-        controller  : 'FormActionController'
+        views:
+          '' :
+            templateUrl : 'views/features/action/views/list-action-view.html'
+            controller  : 'ListActionController'
+          'form-view@action.list' :
+            controller  : 'FormActionController'
         data        :
           restrict  : no
       )
