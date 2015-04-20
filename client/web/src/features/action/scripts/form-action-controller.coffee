@@ -50,7 +50,7 @@ angular.module 'ProjectTrailApp.controllers'
         $scope.modalScope.action = angular.copy($scope.action)
 
         $mdDialog.show(
-          templateUrl   : 'views/features/tool/views/form-action-view.html'
+          templateUrl   : 'views/features/action/views/form-action-view.html'
           scope         : $scope.modalScope
         ).then($scope.processSuccessModalResult)
 
