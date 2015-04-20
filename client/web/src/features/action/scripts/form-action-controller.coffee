@@ -6,9 +6,9 @@
 angular.module 'ProjectTrailApp.controllers'
 
   # =============================================
-  # ToolController
+  # FormActionController
   # =============================================
-  .controller 'FormToolController', [ '$rootScope', '$scope'
+  .controller 'FormActionController', [ '$rootScope', '$scope'
     ($rootScope, $scope) ->
 
       # =============================================
