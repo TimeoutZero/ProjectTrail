@@ -22,7 +22,7 @@ angular.module 'ProjectTrailApp.controllers'
       # Methods
       # =============================================
       $scope.onClickItem = (tool) ->
-        $state.go 'action.list', { teamId: $scope.team.id, toolId : tool.id }
+        $state.go 'action.list', { teamId: $stateParams.teamId, toolId : tool.id }
 
       $scope.getAllData = (data) =>
 
@@ -31,11 +31,11 @@ angular.module 'ProjectTrailApp.controllers'
           $scope.tools = data[1].data
 
         onError = (errorData) ->
-          alert errorData?.message
+          $mdToast.show( $mdToast.simple().content(errorData?.message) )
 
         $q.all([
-          TeamService.get  id     : $stateParams.id
-          ToolService.list teamId : $stateParams.id
+          TeamService.get  id     : $stateParams.teamId
+          ToolService.list teamId : $stateParams.teamId
         ]).then(onSuccess, onError)
 
 

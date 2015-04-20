@@ -6,10 +6,10 @@
 angular.module 'ProjectTrailApp.controllers'
 
   # =============================================
-  # ToolController
+  # FormToolController
   # =============================================
-  .controller 'FormToolController',  [ '$rootScope', '$scope', '$mdDialog', 'TeamService', 'ToolService',
-    ($rootScope, $scope, $mdDialog, TeamService, ToolService) ->
+  .controller 'FormToolController',  [ '$rootScope', '$scope', '$mdDialog', 'TeamService', 'ToolService', '$stateParams',
+    ($rootScope, $scope, $mdDialog, TeamService, ToolService, $stateParams) ->
 
       # =============================================
       # Attributes
@@ -24,7 +24,7 @@ angular.module 'ProjectTrailApp.controllers'
       $scope.processSuccessModalResult = (saved) ->
         if saved
           tool = _.omit($scope.modalScope.tool, ['users', '$$hashKey'])
-          _(tool).extend teamId: $scope.$parent.team.id
+          _(tool).extend teamId: $stateParams.teamId
 
           if tool.id
             promise = ToolService.update(tool)

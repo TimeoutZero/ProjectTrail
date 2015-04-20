@@ -30,7 +30,7 @@ angular.module 'ProjectTrailApp'
       # List - Form
       # ==============================
       .state('tool.list'
-        url         : '/:id/list'
+        url         : '/:teamId/list'
         views:
           '' :
             templateUrl : 'views/features/tool/views/list-tool-view.html'

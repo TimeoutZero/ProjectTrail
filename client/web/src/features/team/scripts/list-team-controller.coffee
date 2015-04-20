@@ -21,7 +21,7 @@ angular.module 'ProjectTrailApp.controllers'
       # Methods
       # =============================================
       $scope.onClickItem = (item) ->
-        $state.go 'tool.list', id : item.id
+        $state.go 'tool.list', teamId : item.id
 
       $scope.openFormDialog = (item) ->
         $scope.currentTeam = item
