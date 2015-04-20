@@ -6,9 +6,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 import static org.springframework.web.bind.annotation.RequestMethod.PUT;
 import io.redspark.ireadme.dto.ActionDTO;
-import io.redspark.ireadme.dto.ToolDTO;
 import io.redspark.ireadme.entity.Action;
-import io.redspark.ireadme.entity.Team;
 import io.redspark.ireadme.entity.Tool;
 import io.redspark.ireadme.form.GenericForm;
 import io.redspark.ireadme.service.IReadmeService;
@@ -39,16 +37,16 @@ public class ActionController {
 
 	@ApiMethod
 	@RequestMapping(method = GET)
-	public Collection<ToolDTO> list(
+	public Collection<ActionDTO> list(
 		@PathVariable("teamId") Long teamId,
 		@PathVariable("toolId") Long toolId) {
 
 		service.getToolService().exist(toolId);
 		
-		Team team = service.getTeamService().findTeamById(teamId);		
+		Tool tool = service.getToolService().findToolById(toolId);
 		
-		return team.getTools()
-				.stream().map(ToolDTO::new)
+		return tool.getActions()
+				.stream().map(ActionDTO::new)
 				.collect(Collectors.toList());
 	}
 	
