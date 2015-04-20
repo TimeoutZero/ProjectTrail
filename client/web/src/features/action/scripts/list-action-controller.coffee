@@ -58,8 +58,9 @@ angular.module 'ProjectTrailApp.controllers'
         $mdDialog.show(confirm).then( -> $scope.deleteItem(item) )
 
       $scope.deleteItem = (item) ->
-        item    = _({teamId: $scope.team.id}).extend item
-        promise = ToolService.delete(item)
+        additionalInformation = teamId: $stateParams.teamId, toolId: $stateParams.toolId
+        item                  = _(additionalInformation).extend item
+        promise               = ActionService.delete(item)
 
         promise.success ->
           $mdToast.show( $mdToast.simple().content('Deleted') )
@@ -75,7 +76,7 @@ angular.module 'ProjectTrailApp.controllers'
       # =============================================
       # Events
       # =============================================
-      $scope.$on 'updateToolList', $scope.getAllData
+      $scope.$on 'updateActionList', $scope.getAllData
 
       # =============================================
       # Initialize

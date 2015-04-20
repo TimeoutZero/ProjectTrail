@@ -14,29 +14,29 @@ angular.module 'ProjectTrailApp.controllers'
 
       list: (data) ->
         $http
-          url           : APP_BASE_URL + "team/#{data.teamId}/tool/#{data.toolId}"
+          url           : APP_BASE_URL + "team/#{data.teamId}/tool/#{data.toolId}/action"
           method        : 'GET'
 
       create: (data) ->
         $http
-          url           : APP_BASE_URL + "team/#{data.teamId}/tool/#{data.toolId}"
+          url           : APP_BASE_URL + "team/#{data.teamId}/tool/#{data.toolId}/action"
           method        : 'POST'
           data          : data
 
       get: (data) ->
         $http
-          url           : APP_BASE_URL + "team/#{data.teamId}/tool/#{data.toolId}/#{data.id}"
+          url           : APP_BASE_URL + "team/#{data.teamId}/tool/#{data.toolId}/action/#{data.id}"
           method        : 'GET'
           data          : data
 
       update: (data) ->
         $http
-          url           : APP_BASE_URL + "team/#{data.teamId}/tool/#{data.toolId}/#{data.id}"
+          url           : APP_BASE_URL + "team/#{data.teamId}/tool/#{data.toolId}/action/#{data.id}"
           method        : 'PUT'
           data          : data
 
       delete: (data) ->
         $http
-          url           : APP_BASE_URL + "team/#{data.teamId}/tool/#{data.toolId}/#{data.id}"
+          url           : APP_BASE_URL + "team/#{data.teamId}/tool/#{data.toolId}/action/#{data.id}"
           method        : 'DELETE'
   ]

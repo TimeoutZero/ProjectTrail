@@ -33,7 +33,7 @@ angular.module 'ProjectTrailApp.controllers'
           else
             promise = ActionService.create(action)
 
-          promise.success -> $scope.$emit 'updateToolList'
+          promise.success -> $scope.$emit 'updateActionList'
 
       # =============================================
       # Aux Methods
