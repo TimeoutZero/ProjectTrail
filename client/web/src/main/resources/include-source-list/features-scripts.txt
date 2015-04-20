@@ -15,6 +15,7 @@ scripts/features/tool/scripts/tool-routes.js
 scripts/features/tool/scripts/tool-controller.js
 scripts/features/tool/scripts/list-tool-controller.js
 scripts/features/tool/scripts/form-tool-controller.js
+scripts/features/tool/scripts/tool-service.js
 
 scripts/features/action/scripts/action-routes.js
 scripts/features/action/scripts/action-controller.js
